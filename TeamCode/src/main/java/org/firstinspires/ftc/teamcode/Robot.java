@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.roadrunner.ftc.GoBildaPinpointDriverRR;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -48,7 +49,7 @@ public class Robot {
         // TODO: Fix CAI Telemetry
         telemetry = ftcTelemetry;
         // Gets the GoBuilda odometry computer
-        GoBildaPinpointDriver odo = hardwareMap.get(GoBildaPinpointDriver.class,"odo");
+        GoBildaPinpointDriverRR odo = hardwareMap.get(GoBildaPinpointDriverRR.class,"pinpoint");
         // All 4 motors
         DcMotor front_left = hardwareMap.get(DcMotor.class, "front_left");
         DcMotor rear_left = hardwareMap.get(DcMotor.class, "rear_left");

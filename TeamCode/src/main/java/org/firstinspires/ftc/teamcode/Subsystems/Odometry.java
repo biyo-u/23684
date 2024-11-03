@@ -1,18 +1,19 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
+import com.acmerobotics.roadrunner.ftc.GoBildaPinpointDriver;
+import com.acmerobotics.roadrunner.ftc.GoBildaPinpointDriverRR;
 import com.qualcomm.robotcore.hardware.IMU;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
 import org.firstinspires.ftc.teamcode.Constants;
-import org.firstinspires.ftc.teamcode.GoBildaPinpointDriver;
 
 public class Odometry {
     boolean isInitialized = false;
     IMU imu;
-    public GoBildaPinpointDriver odo;
+    public GoBildaPinpointDriverRR odo;
 
-    public Odometry(GoBildaPinpointDriver odo, IMU imu) {
+    public Odometry(GoBildaPinpointDriverRR odo, IMU imu) {
         this.odo = odo;
         this.imu = imu;
         // Sets Odometry offsets
@@ -20,8 +21,8 @@ public class Odometry {
         // TODO: Change odo.setOffsets to robot specification
         // TODO: Confirm setEncoderDirections by running EncoderDirectionTest
         this.odo.setOffsets(-84.0, -168.0); //measured in mm
-        this.odo.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_SWINGARM_POD);
-        this.odo.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.FORWARD, GoBildaPinpointDriver.EncoderDirection.FORWARD);
+        this.odo.setEncoderResolution(GoBildaPinpointDriverRR.GoBildaOdometryPods.goBILDA_SWINGARM_POD);
+        this.odo.setEncoderDirections(GoBildaPinpointDriverRR.EncoderDirection.FORWARD, GoBildaPinpointDriverRR.EncoderDirection.FORWARD);
         this.odo.resetPosAndIMU();
     }
 

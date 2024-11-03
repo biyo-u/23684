@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Robot;
 
-@TeleOp(name = "Field Centric Tele Op", group = "TeleOp")
+@TeleOp(name = "Field Centric Tele Op", group = "1.TeleOp")
 public class FieldCentricTeleOp extends OpMode {
     Robot robot;
 
