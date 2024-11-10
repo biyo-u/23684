@@ -22,7 +22,7 @@ public class FieldCentricTeleOp extends OpMode {
         double rx = gamepad1.right_stick_x;
 
         // This button choice was made so that it is hard to hit on accident,
-        if (gamepad1.options) {
+        if (gamepad1.left_bumper) {
             robot.imu.resetYaw();
         }
 
@@ -33,6 +33,7 @@ public class FieldCentricTeleOp extends OpMode {
             robot.updateSpeed((double) 75/100);
         }
 
+        // Slide
         if (gamepad2.left_stick_y > Constants.deadZone) {
             robot.slide.SlideDown(1);
         } else if (gamepad2.left_stick_y < -Constants.deadZone) {
@@ -40,6 +41,8 @@ public class FieldCentricTeleOp extends OpMode {
         } else {
             robot.slide.SlideStop();
         }
+
+        // LiftAngleMotorV2
         if (Math.abs(gamepad2.left_stick_x) > Constants.deadZone) {
             float input = gamepad2.left_stick_x;
             float mappedInput;
@@ -55,18 +58,39 @@ public class FieldCentricTeleOp extends OpMode {
             robot.liftAngleMotorV2.Move(mappedInput);
         }
 
+        // Intake
+        if (Math.abs(gamepad2.right_stick_x) > Constants.deadZone) {
+            float input = gamepad2.right_stick_x;
+            float mappedInput;
 
-        // TODO: Configure lift angle motor onto Driver Hub config file, then uncomment the corresponding lines (line 45, 48, 51)
-        if(gamepad2.x){
-//            robot.liftServo.Move(0);
-            robot.liftAngleMotor.LiftAngleForward(1);
-        } else if(gamepad2.y){
-//            robot.liftServo.Move(0.3);
-            robot.liftAngleMotor.LiftAngleBackward(1);
-        } else if(gamepad2.b){
-//            robot.liftServo.Move(1);
-            robot.liftAngleMotor.LiftAngleStop();
+            if (input > 0) {
+                // Map values from 0 to 1 to deadZone to 1
+                mappedInput = (float) (Constants.deadZone + (input * (1 - Constants.deadZone)));
+            } else {
+                // Map values from 0 to -1 to -deadZone to -1
+                mappedInput = (float) (-Constants.deadZone + (input * (1 - Constants.deadZone)));
+            }
+
+            robot.arm.intakeMove(mappedInput);
         }
+
+        // Arm Main
+        if (Math.abs(gamepad2.right_stick_y) > Constants.deadZone) {
+            float input = gamepad2.right_stick_y;
+            float mappedInput;
+
+            if (input > 0) {
+                // Map values from 0 to 1 to deadZone to 1
+                mappedInput = (float) (Constants.deadZone + (input * (1 - Constants.deadZone)));
+            } else {
+                // Map values from 0 to -1 to -deadZone to -1
+                mappedInput = (float) (-Constants.deadZone + (input * (1 - Constants.deadZone)));
+            }
+
+            robot.arm.armMainMove(mappedInput);
+        }
+
+//        if (gamepad2.)
 
 
         if(gamepad2.dpad_left){

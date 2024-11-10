@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
-
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class LiftAngleMotorV2 {
@@ -11,7 +10,6 @@ public class LiftAngleMotorV2 {
 
     public LiftAngleMotorV2(DcMotor liftAngleMotor) {
         this.liftAngleMotor = liftAngleMotor;
-        this.liftAngleMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         this.liftAngleMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         this.location = liftAngleMotor.getCurrentPosition();
     }
@@ -24,9 +22,10 @@ public class LiftAngleMotorV2 {
     }
 
     public void Move(double speed) {
-        if (!((location + speed) > forwardLimit) && !((location + speed) < backwardLimit)) {
-            liftAngleMotor.setTargetPosition((int) (location + speed));
-            liftAngleMotor.setPower(1);
+        if (speed > 0 && !((location) > forwardLimit)) {
+            liftAngleMotor.setPower(0.2);
+        } else if (speed < 0 && !((location) < backwardLimit)) {
+            liftAngleMotor.setPower(-0.2);
         } else {
             liftAngleMotor.setPower(0);
         }
