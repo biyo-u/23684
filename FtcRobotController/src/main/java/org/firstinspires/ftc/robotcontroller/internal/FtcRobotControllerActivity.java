@@ -396,9 +396,7 @@ public class FtcRobotControllerActivity extends Activity
     super.onStart();
     RobotLog.vv(TAG, "onStart()");
 
-    entireScreenLayout.setOnClickListener((event) -> {
-      dimmer.handleDimTimer();
-    });
+    entireScreenLayout.setOnClickListener((event) -> dimmer.handleDimTimer());
   }
 
   protected UpdateUI createUpdateUI() {
