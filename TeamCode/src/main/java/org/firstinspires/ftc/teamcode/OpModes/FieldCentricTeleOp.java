@@ -106,6 +106,7 @@ public class FieldCentricTeleOp extends OpMode {
         }
 
         telemetry.addData("Slide Servo Position", robot.liftServo.getPosition());
+        telemetry.addData("LiftAngleMotor Position", robot.liftAngleMotorV2.liftAngleMotor.getCurrentPosition());
 
 
         // Gets robot heading (direction it's pointing)
