@@ -95,7 +95,7 @@ public class FieldCentricTeleOp extends OpMode {
         } else if (gamepad2.b) {
             robot.arm.elbowMove(1);
         } else {
-            robot.arm.elbowMove(-0);
+            robot.arm.elbowMove(0);
         }
 
 
