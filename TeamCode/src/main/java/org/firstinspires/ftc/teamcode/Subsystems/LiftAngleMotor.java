@@ -1,8 +1,6 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import org.firstinspires.ftc.teamcode.Constants;
 
 // TODO: Troubleshoot LiftAngleMotor.java functioning, after uncommenting out (lines 65, 99 in Robot.java) and lines 45, 48, 51 in FieldCentricTeleOp.java)!!!
 public class LiftAngleMotor {

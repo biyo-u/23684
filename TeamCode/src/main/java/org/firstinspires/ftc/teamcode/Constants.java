@@ -11,7 +11,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 import java.util.HashMap;
 import java.util.Map;
 
-@Config
+//@Config
 public class Constants {
     // TODO: Disable developerMode for comps
     public static boolean developerMode = true;
