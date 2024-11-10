@@ -11,6 +11,7 @@ public class LiftAngleMotorV2 {
 
     public LiftAngleMotorV2(DcMotor liftAngleMotor) {
         this.liftAngleMotor = liftAngleMotor;
+        this.liftAngleMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         this.liftAngleMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         this.location = liftAngleMotor.getCurrentPosition();
     }

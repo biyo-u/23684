@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.Vector2d;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -21,6 +20,7 @@ public class Constants {
     public static double slideBrakeSpeed = 0.1;
     public static boolean cameraStreaming = false;
     public static double drivetrainEncoderResolution = 332.8; //measured in ticks
+    public static double deadZone = 0.2;
     public static Map<Integer, Vector2d> aprilTagLocations = new HashMap<Integer, Vector2d>();
 
     public static void addAprilTags(){

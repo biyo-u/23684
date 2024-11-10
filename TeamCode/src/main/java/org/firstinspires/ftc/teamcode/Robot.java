@@ -2,12 +2,24 @@ package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.roadrunner.ftc.GoBildaPinpointDriverRR;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
-import com.qualcomm.robotcore.hardware.*;
+import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.hardware.Servo;
+
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-import org.firstinspires.ftc.teamcode.Subsystems.*;
+import org.firstinspires.ftc.teamcode.Subsystems.Arm;
+import org.firstinspires.ftc.teamcode.Subsystems.Drive;
+import org.firstinspires.ftc.teamcode.Subsystems.FirstHang;
+import org.firstinspires.ftc.teamcode.Subsystems.LiftAngleMotor;
+import org.firstinspires.ftc.teamcode.Subsystems.LiftAngleMotorV2;
+import org.firstinspires.ftc.teamcode.Subsystems.LiftServo;
+import org.firstinspires.ftc.teamcode.Subsystems.Odometry;
+import org.firstinspires.ftc.teamcode.Subsystems.Slide;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagGameDatabase;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
@@ -38,6 +50,8 @@ public class Robot {
 
     public LiftAngleMotor liftAngleMotor;
 
+    public LiftAngleMotorV2 liftAngleMotorV2;
+
     public Arm arm;
 
     // TODO: Only initialize required hardware depending on use case (IN PROGRESS)
@@ -48,7 +62,7 @@ public class Robot {
         // TODO: Fix CAI Telemetry
         telemetry = ftcTelemetry;
 
-        // Gets the GoBuilda odometry computer
+        // Gets the GoBilda odometry computer
         GoBildaPinpointDriverRR odo = hardwareMap.get(GoBildaPinpointDriverRR.class,"pinpoint");
 
         // Drivetrain Motors
@@ -67,7 +81,7 @@ public class Robot {
 
         // Lift Angle Motors
         Servo lift_servo = hardwareMap.get(Servo.class, "lift_servo");
-        DcMotor liftAngleMotor = hardwareMap.get(DcMotor.class, "lift_angle_motor");
+        DcMotor liftAngleDCMotor = hardwareMap.get(DcMotor.class, "lift_angle_motor");
 
         // Arm Motors and Servo
         CRServo intake = hardwareMap.get(CRServo.class, "intake");
@@ -106,16 +120,14 @@ public class Robot {
 
         this.liftServo = new LiftServo(lift_servo);
 
-        this.liftAngleMotor = new LiftAngleMotor(liftAngleMotor);
+        this.liftAngleMotor = new LiftAngleMotor(liftAngleDCMotor);
+        this.liftAngleMotorV2 = new LiftAngleMotorV2(liftAngleDCMotor);
 
         this.arm = new Arm(intake, armMain, claw);
 
         // Sets slide zero power mode to break so slide doesn't fall by itself
         slide_left.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         slide_right.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        // Stops and resets the encoder for the lift angle slide
-        liftAngleMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         // Retrieve the IMU from the hardware map
         imu = hardwareMap.get(IMU.class, "imu");

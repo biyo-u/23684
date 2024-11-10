@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Robot;
 
 @TeleOp(name = "Field Centric Tele Op", group = "1.TeleOp")
@@ -32,14 +33,29 @@ public class FieldCentricTeleOp extends OpMode {
             robot.updateSpeed((double) 75/100);
         }
 
-        // Moves slide up when dpad up is pressed and down when dpad down is pressed
-        if(gamepad2.left_stick_y > 0.1){
+        if (gamepad2.left_stick_y > Constants.deadZone) {
             robot.slide.SlideDown(1);
-        } else if(gamepad2.left_stick_y < -0.1){
+        } else if (gamepad2.left_stick_y < -Constants.deadZone) {
             robot.slide.SlideUp(1);
         } else {
             robot.slide.SlideStop();
         }
+        if (Math.abs(gamepad2.left_stick_x) > Constants.deadZone) {
+            float input = gamepad2.left_stick_x;
+            float mappedInput;
+
+            if (input > 0) {
+                // Map values from 0 to 1 to deadZone to 1
+                mappedInput = (float) (Constants.deadZone + (input * (1 - Constants.deadZone)));
+            } else {
+                // Map values from 0 to -1 to -deadZone to -1
+                mappedInput = (float) (-Constants.deadZone + (input * (1 - Constants.deadZone)));
+            }
+
+            robot.liftAngleMotorV2.Move(mappedInput);
+        }
+
+
         // TODO: Configure lift angle motor onto Driver Hub config file, then uncomment the corresponding lines (line 45, 48, 51)
         if(gamepad2.x){
 //            robot.liftServo.Move(0);
@@ -51,6 +67,7 @@ public class FieldCentricTeleOp extends OpMode {
 //            robot.liftServo.Move(1);
             robot.liftAngleMotor.LiftAngleStop();
         }
+
 
         if(gamepad2.dpad_left){
             robot.firstHang.HangUp();

@@ -11,6 +11,7 @@ public class LiftAngleMotor {
     public  int backwardLocation = -500; // in ticks
     public LiftAngleMotor(DcMotor liftanglemotor) {
         this.liftanglemotor = liftanglemotor;
+        this.liftanglemotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         this.location = liftanglemotor.getTargetPosition();
     }
 
