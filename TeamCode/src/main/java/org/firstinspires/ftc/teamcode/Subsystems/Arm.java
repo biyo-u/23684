@@ -2,17 +2,19 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 
 // entire arm assembly subsystem includes: intakeMotor, clawServo, and armMotor
 
+import com.qualcomm.hardware.rev.RevSPARKMini;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class Arm {
     CRServo intake;
     private final DcMotor armMain;
     Servo claw;
-    private final DcMotor elbow;
+    private final DcMotorSimple elbow;
 
-    public Arm(CRServo intake, DcMotor armMain, Servo claw, DcMotor elbow) {
+    public Arm(CRServo intake, DcMotor armMain, Servo claw, DcMotorSimple elbow) {
         this.intake = intake;
         this.armMain = armMain;
         this.claw = claw;
