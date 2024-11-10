@@ -2,15 +2,16 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 
 // entire arm assembly subsystem includes: intakeMotor, clawServo, and armMotor
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class Arm {
-    private DcMotor intake;
+    CRServo intake;
     private DcMotor armMain;
     Servo claw;
 
-    public Arm(DcMotor intake, DcMotor armMain, Servo claw) {
+    public Arm(CRServo intake, DcMotor armMain, Servo claw) {
         this.intake = intake;
         this.armMain = armMain;
         this.claw = claw;
@@ -18,7 +19,7 @@ public class Arm {
     }
 
     // CLAW
-    public void clawMove(double position) {
+    public void clawUse(double position) {
         claw.setPosition(position);
     }
     public double getPosition(){
@@ -29,9 +30,15 @@ public class Arm {
     public void intakeMove(double speed){
         intake.setPower(speed);
     }
+    public void intakeStop(){
+        intake.setPower(0);
+    }
 
     // ARMMAIN
     public void armMainMove(double speed){
         armMain.setPower(speed);
+    }
+    public void armMainStop(){
+        armMain.setPower(0);
     }
 }

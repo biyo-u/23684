@@ -2,10 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.roadrunner.ftc.GoBildaPinpointDriverRR;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.IMU;
-import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.*;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -73,7 +70,7 @@ public class Robot {
         DcMotor liftAngleMotor = hardwareMap.get(DcMotor.class, "lift_angle_motor");
 
         // Arm Motors and Servo
-        DcMotor intake = hardwareMap.get(DcMotor.class, "intake");
+        CRServo intake = hardwareMap.get(CRServo.class, "intake");
         DcMotor armMain = hardwareMap.get(DcMotor.class, "armMain");
         Servo claw = hardwareMap.get(Servo.class, "claw");
 
