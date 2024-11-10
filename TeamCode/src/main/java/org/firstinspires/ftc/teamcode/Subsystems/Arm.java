@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Arm {
     CRServo intake;
-    private DcMotor armMain;
+    private final DcMotor armMain;
     Servo claw;
 
     public Arm(CRServo intake, DcMotor armMain, Servo claw) {
