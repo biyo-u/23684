@@ -1,8 +1,6 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import org.firstinspires.ftc.teamcode.Constants;
 
 // TODO: Fine-tune line 13 and line 14 values for forwardLocation and backwardLocation
 public class LiftAngleMotor {

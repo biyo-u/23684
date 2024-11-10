@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.OpModes;
 
+import android.annotation.SuppressLint;
 import android.util.Size;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -37,7 +38,7 @@ public class AutoUtility {
         // Choose a camera resolution. Not all cameras support all resolutions.
         builder.setCameraResolution(new Size(Constants.Camera.width, Constants.Camera.height));
 
-        builder.enableLiveView(false);
+        builder.enableLiveView(true);
         // Set the stream format; MJPEG uses less bandwidth than default YUY2.
         // builder.setStreamFormat(VisionPortal.StreamFormat.YUY2);
 
@@ -65,6 +66,8 @@ public class AutoUtility {
     }
 
     private void telemetryAprilTag() {
+
+        telemetry.addLine("Webcam attached?: " + robot.webcam.isAttached());
 
         List<AprilTagDetection> currentDetections = aprilTag.getDetections();
         telemetry.addData("# AprilTags Detected", currentDetections.size());
