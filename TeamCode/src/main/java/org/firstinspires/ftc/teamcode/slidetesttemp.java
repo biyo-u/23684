@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 // THIS PROGRAM WAS CREATED TO TEST RUN THE VIPER SLIDES ON BENJAMIN. DO NOT DELETE!!!!
-@TeleOp
+@TeleOp (name = "Slide + Arm Test")
 public class slidetesttemp extends OpMode {
 
     private DcMotor slide_left;

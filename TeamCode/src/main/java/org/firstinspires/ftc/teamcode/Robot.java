@@ -41,6 +41,8 @@ public class Robot {
 
     public LiftAngleMotor liftAngleMotor;
 
+    public Arm arm;
+
     // TODO: Only initialize required hardware depending on use case (IN PROGRESS)
     // TODO: Configure lift angle motor onto Driver Hub config file, then uncomment the corresponding lines (line 65, 99)
     public Robot(HardwareMap hardwareMap, Telemetry ftcTelemetry, boolean setupAprilTags) {
@@ -48,22 +50,32 @@ public class Robot {
 //        telemetry = new CAITelemetry(ftcTelemetry);
         // TODO: Fix CAI Telemetry
         telemetry = ftcTelemetry;
+
         // Gets the GoBuilda odometry computer
         GoBildaPinpointDriverRR odo = hardwareMap.get(GoBildaPinpointDriverRR.class,"pinpoint");
-        // All 4 motors
+
+        // Drivetrain Motors
         DcMotor front_left = hardwareMap.get(DcMotor.class, "front_left");
         DcMotor rear_left = hardwareMap.get(DcMotor.class, "rear_left");
         DcMotor front_right = hardwareMap.get(DcMotor.class, "front_right");
         DcMotor rear_right = hardwareMap.get(DcMotor.class, "rear_right");
+
         // Both slide motors, to move the slide up and down
         DcMotor slide_left = hardwareMap.get(DcMotor.class, "slide_left");
         DcMotor slide_right = hardwareMap.get(DcMotor.class, "slide_right");
 
+        // Hang Servos
         Servo hang_left = hardwareMap.get(Servo.class, "first_hang_left");
         Servo hang_right = hardwareMap.get(Servo.class, "first_hang_right");
 
+        // Lift Angle Motors
         Servo lift_servo = hardwareMap.get(Servo.class, "lift_servo");
-//        DcMotor liftAngleMotor = hardwareMap.get(DcMotor.class, "lift_angle_motor");
+        DcMotor liftAngleMotor = hardwareMap.get(DcMotor.class, "lift_angle_motor");
+
+        // Arm Motors and Servo
+        DcMotor intake = hardwareMap.get(DcMotor.class, "intake");
+        DcMotor armMain = hardwareMap.get(DcMotor.class, "armMain");
+        Servo claw = hardwareMap.get(Servo.class, "claw");
 
         if (setupAprilTags){
             webcam = hardwareMap.get(WebcamName.class, "Webcam 1");
@@ -97,14 +109,16 @@ public class Robot {
 
         this.liftServo = new LiftServo(lift_servo);
 
-//        this.liftAngleMotor = new LiftAngleMotor(liftAngleMotor);
+        this.liftAngleMotor = new LiftAngleMotor(liftAngleMotor);
+
+        this.arm = new Arm(intake, armMain, claw);
 
         // Sets slide zero power mode to break so slide doesn't fall by itself
         slide_left.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         slide_right.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         // Stops and resets the encoder for the lift angle slide
-//        liftanglemotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        liftAngleMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         // Retrieve the IMU from the hardware map
         imu = hardwareMap.get(IMU.class, "imu");
