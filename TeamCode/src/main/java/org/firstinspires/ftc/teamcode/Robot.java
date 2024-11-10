@@ -87,6 +87,7 @@ public class Robot {
         CRServo intake = hardwareMap.get(CRServo.class, "intake");
         DcMotor armMain = hardwareMap.get(DcMotor.class, "armMain");
         Servo claw = hardwareMap.get(Servo.class, "claw");
+        DcMotor elbow = hardwareMap.get(DcMotor.class, "elbow");
 
         if (setupAprilTags){
             webcam = hardwareMap.get(WebcamName.class, "Webcam 1");
@@ -123,7 +124,7 @@ public class Robot {
         this.liftAngleMotor = new LiftAngleMotor(liftAngleDCMotor);
         this.liftAngleMotorV2 = new LiftAngleMotorV2(liftAngleDCMotor);
 
-        this.arm = new Arm(intake, armMain, claw);
+        this.arm = new Arm(intake, armMain, claw, elbow);
 
         // Sets slide zero power mode to break so slide doesn't fall by itself
         slide_left.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
