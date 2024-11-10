@@ -20,7 +20,7 @@ public class LiftAngleMotor {
         liftanglemotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
-    public void LiftAngleFoward(double speed) {
+    public void LiftAngleForward(double speed) {
         targetLocation = forwardLocation;
         LiftAngleMove(speed, targetLocation);
     }

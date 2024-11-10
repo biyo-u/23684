@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+
 import org.firstinspires.ftc.teamcode.Subsystems.Arm;
 import org.firstinspires.ftc.teamcode.Subsystems.LiftAngleMotor;
 
@@ -70,7 +71,7 @@ public class slidetesttemp extends OpMode {
 
         // LIFT ANGLE CONTROLS
         if (gamepad1.left_bumper) {
-            robot.liftAngleMotor.LiftAngleFoward(1);
+            robot.liftAngleMotor.LiftAngleForward(1);
         } else if (gamepad1.right_bumper) {
             robot.liftAngleMotor.LiftAngleBackward(1);
         } else {

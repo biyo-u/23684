@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.OpModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Robot;
 
@@ -42,7 +43,7 @@ public class FieldCentricTeleOp extends OpMode {
         // TODO: Configure lift angle motor onto Driver Hub config file, then uncomment the corresponding lines (line 45, 48, 51)
         if(gamepad2.x){
 //            robot.liftServo.Move(0);
-            robot.liftAngleMotor.LiftAngleFoward(1);
+            robot.liftAngleMotor.LiftAngleForward(1);
         } else if(gamepad2.y){
 //            robot.liftServo.Move(0.3);
             robot.liftAngleMotor.LiftAngleBackward(1);
