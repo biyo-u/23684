@@ -10,7 +10,7 @@ public class Arm {
     CRServo intake;
     private final DcMotor armMain;
     Servo claw;
-    private DcMotor elbow;
+    private final DcMotor elbow;
 
     public Arm(CRServo intake, DcMotor armMain, Servo claw, DcMotor elbow) {
         this.intake = intake;
@@ -47,8 +47,5 @@ public class Arm {
     // ELBOW
     public void elbowMove(double speed){
         elbow.setPower(speed);
-    }
-    public void elbowStop(){
-        elbow.setPower(0);
     }
 }
