@@ -5,12 +5,13 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import org.firstinspires.ftc.teamcode.Constants;
 
 // TODO: Troubleshoot LiftAngleMotor.java functioning, after uncommenting out (lines 65, 99 in Robot.java) and lines 45, 48, 51 in FieldCentricTeleOp.java)!!!
+// TODO: Fine-tune line 13 and line 14 values for forwardLocation and backwardLocation
 public class LiftAngleMotor {
     private DcMotor liftanglemotor;
     public double location = liftanglemotor.getTargetPosition();
     public int targetLocation;
-    public int forwardLocation = 900;
-    public  int backwardLocation = -500;
+    public int forwardLocation = 900; // in ticks
+    public  int backwardLocation = -500; // in ticks
     public LiftAngleMotor(DcMotor liftanglemotor) {
         this.liftanglemotor = liftanglemotor;
     }
