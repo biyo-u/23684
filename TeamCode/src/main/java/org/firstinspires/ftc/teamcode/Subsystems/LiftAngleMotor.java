@@ -7,12 +7,13 @@ import org.firstinspires.ftc.teamcode.Constants;
 // TODO: Fine-tune line 13 and line 14 values for forwardLocation and backwardLocation
 public class LiftAngleMotor {
     public DcMotor liftanglemotor;
-    public double location = liftanglemotor.getTargetPosition();
+    public double location;
     public int targetLocation;
     public int forwardLocation = 900; // in ticks
     public  int backwardLocation = -500; // in ticks
     public LiftAngleMotor(DcMotor liftanglemotor) {
         this.liftanglemotor = liftanglemotor;
+        this.location = liftanglemotor.getTargetPosition();
     }
 
     public void LiftAngleMove(double speed, int targetLocation) {
