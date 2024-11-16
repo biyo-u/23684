@@ -55,6 +55,8 @@ public class Diagnostics extends OpMode {
         this.frontRight = frontRight;
         this.rearLeft = rearLeft;
         this.rearRight = rearRight;
+        this.frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        this.rearLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         this.frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.rearLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -68,6 +70,7 @@ public class Diagnostics extends OpMode {
         this.liftMotorRight = liftMotorRight;
         this.liftMotorTilt = liftMotorTilt;
         this.shoulderMotor = shoulderMotor;
+        this.liftMotorRight.setDirection(DcMotorSimple.Direction.REVERSE);
         this.liftMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.liftMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.liftMotorTilt.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -81,6 +84,7 @@ public class Diagnostics extends OpMode {
         this.clawServo = clawServo;
         this.elbowMotor = elbowMotor;
         this.wristServo = wristServo;
+
         telemetry.addData("Hardware Status", "Initialized");
     }
 
@@ -94,10 +98,8 @@ public class Diagnostics extends OpMode {
         telemetry.addData("Y Key", "Front Right Motor");
         telemetry.addData("A Key", "Rear Left Motor");
         telemetry.addData("B Key", "Rear Right Motor");
-        telemetry.addData("Right Stick Forward", "Right Lift Up");
-        telemetry.addData("Right Stick Backward", "Right Lift Down");
-        telemetry.addData("Left Stick Forward", "Left Lift Up");
-        telemetry.addData("Left Stick Backward", "Left Lift Down");
+        telemetry.addData("D Pad Up", "Both Lift Motors Up");
+        telemetry.addData("D Pad Down", "Both Lift Motors Down");
         telemetry.addData("D Pad Left", "Lift Tilt +1 power");
         telemetry.addData("D Pad Right", "Lift Tilt -1 power");
         telemetry.addData("Right Bumper", "Intake Forward");
@@ -106,8 +108,8 @@ public class Diagnostics extends OpMode {
         telemetry.addData("GAMEPAD TWO", "CONTROLS");
         telemetry.addData("X Key", "Shoulder Up"); //X sends down
         telemetry.addData("Y Key", "Shoulder Down"); // Y sends up
-        telemetry.addData("A Key", "Claw Pos A");
-        telemetry.addData("B Key", "Claw Pos B");
+        telemetry.addData("A Key", "Claw Pos A"); // close
+        telemetry.addData("B Key", "Claw Pos B"); // open
         telemetry.addData("D Pad Up", "Elbow +1 Power");
         telemetry.addData("D Pad Down", "Elbow -1 Power");
         telemetry.addData("D Pad Left", "Claw Pos A");
@@ -117,22 +119,22 @@ public class Diagnostics extends OpMode {
 
         // CONFIRM MOTOR DIRECTION
         if (gamepad1.x) {
-            frontLeft.setPower(1);
+            frontLeft.setPower(0.3);
         } else {
             frontLeft.setPower(0);
         }
         if (gamepad1.y) {
-            frontRight.setPower(1);
+            frontRight.setPower(0.3);
         } else {
             frontRight.setPower(0);
         }
         if (gamepad1.a) {
-            rearLeft.setPower(1);
+            rearLeft.setPower(0.3);
         } else {
             rearLeft.setPower(0);
         }
         if (gamepad1.b) {
-            rearRight.setPower(1);
+            rearRight.setPower(0.3);
         } else {
             rearRight.setPower(0);
         }
@@ -204,8 +206,8 @@ public class Diagnostics extends OpMode {
             first_hang_left.setPosition(1);
             first_hang_right.setPosition(0);
         } else if (gamepad2.left_bumper) {
-            first_hang_left.setPosition(0);
-            first_hang_right.setPosition(1);
+            first_hang_left.setPosition(0.1);
+            first_hang_right.setPosition(0.7);
         }
     }
 }
