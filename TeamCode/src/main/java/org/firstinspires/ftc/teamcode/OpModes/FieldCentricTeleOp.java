@@ -40,6 +40,7 @@ public class FieldCentricTeleOp extends OpMode {
         } else {
             robot.intake.intakeStop();
         }
+        
         if (gamepad2.x){
             robot.intake.wristExtend();
         }else{
