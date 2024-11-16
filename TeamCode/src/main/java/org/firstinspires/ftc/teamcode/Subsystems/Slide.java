@@ -18,6 +18,8 @@ public class Slide {
         this.slide_right.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
+    // TODO: Look into tuning PID(F) Control for the slide, other motors potentially
+
     public void SlideMove(double speed, double left_extra_speed, double right_extra_speed){
         slide_left.setPower(speed + left_extra_speed);
         slide_right.setPower(speed + right_extra_speed);
