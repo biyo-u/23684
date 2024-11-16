@@ -7,10 +7,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.CRServo;
 
-
-import org.firstinspires.ftc.teamcode.Constants;
-import org.firstinspires.ftc.teamcode.Robot;
-
 /*
 THIS OPMODE IS FOR DIAGNOSTIC TESTING OF ALL HARDWARE INDEPENDENT OF SUBSYSTEMS. DO NOT DELETE THIS.
  */
@@ -19,7 +15,7 @@ THIS OPMODE IS FOR DIAGNOSTIC TESTING OF ALL HARDWARE INDEPENDENT OF SUBSYSTEMS.
 public class Diagnostics extends OpMode {
     private CRServo intakeServo;
     private Servo clawServo;
-    private DcMotor elbowMotor;
+    private DcMotorSimple elbowMotor;
     private Servo wristServo;
     private DcMotor liftMotorLeft;
     private DcMotor liftMotorRight;
@@ -34,6 +30,23 @@ public class Diagnostics extends OpMode {
 
     @Override
     public void init() {
+
+        // Private Devices
+        CRServo intakeServo = hardwareMap.get(CRServo.class, "intakeServo");
+        Servo clawServo = hardwareMap.get(Servo.class, "clawServo");
+        Servo wristServo = hardwareMap.get(Servo.class, "wristServo");
+        Servo first_hang_right = hardwareMap.get(Servo.class, "first_hang_right");
+        Servo first_hang_left = hardwareMap.get(Servo.class, "first_hang_left");
+        DcMotorSimple elbowMotor = hardwareMap.get(DcMotorSimple.class, "elbowMotor");
+        DcMotor liftMotorLeft = hardwareMap.get(DcMotor.class, "liftMotorLeft");
+        DcMotor liftMotorRight = hardwareMap.get(DcMotor.class, "liftMotorRight");
+        DcMotor liftMotorTilt = hardwareMap.get(DcMotor.class, "liftMotorTilt");
+        DcMotor shoulderMotor = hardwareMap.get(DcMotor.class, "shoulderMotor");
+        DcMotor frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
+        DcMotor frontRight = hardwareMap.get(DcMotor.class, "frontRight");
+        DcMotor rearLeft = hardwareMap.get(DcMotor.class, "rearLeft");
+        DcMotor rearRight = hardwareMap.get(DcMotor.class, "rearRight");
+
         // HANG
         this.first_hang_left = first_hang_left;
         this.first_hang_right = first_hang_right;
@@ -81,16 +94,18 @@ public class Diagnostics extends OpMode {
         telemetry.addData("Y Key", "Front Right Motor");
         telemetry.addData("A Key", "Rear Left Motor");
         telemetry.addData("B Key", "Rear Right Motor");
-        telemetry.addData("D Pad Up", "Both Lift Motors Up");
-        telemetry.addData("D Pad Down", "Both Lift Motors Down");
+        telemetry.addData("Right Stick Forward", "Right Lift Up");
+        telemetry.addData("Right Stick Backward", "Right Lift Down");
+        telemetry.addData("Left Stick Forward", "Left Lift Up");
+        telemetry.addData("Left Stick Backward", "Left Lift Down");
         telemetry.addData("D Pad Left", "Lift Tilt +1 power");
         telemetry.addData("D Pad Right", "Lift Tilt -1 power");
         telemetry.addData("Right Bumper", "Intake Forward");
         telemetry.addData("Left Bumper", "Intake Backward");
 
         telemetry.addData("GAMEPAD TWO", "CONTROLS");
-        telemetry.addData("X Key", "Shoulder Up");
-        telemetry.addData("Y Key", "Shoulder Down");
+        telemetry.addData("X Key", "Shoulder Up"); //X sends down
+        telemetry.addData("Y Key", "Shoulder Down"); // Y sends up
         telemetry.addData("A Key", "Claw Pos A");
         telemetry.addData("B Key", "Claw Pos B");
         telemetry.addData("D Pad Up", "Elbow +1 Power");
@@ -187,10 +202,10 @@ public class Diagnostics extends OpMode {
         // HANG SERVO PREP
         if (gamepad2.right_bumper) {
             first_hang_left.setPosition(1);
-            first_hang_right.setPosition(1);
+            first_hang_right.setPosition(0);
         } else if (gamepad2.left_bumper) {
             first_hang_left.setPosition(0);
-            first_hang_right.setPosition(0);
+            first_hang_right.setPosition(1);
         }
     }
 }
