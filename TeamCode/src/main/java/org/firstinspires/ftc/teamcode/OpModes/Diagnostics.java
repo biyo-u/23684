@@ -137,7 +137,7 @@ public class Diagnostics extends OpMode {
             rearRight.setPower(0);
         }
 
-        // CONFIRM SLIDE DIRECTIONS
+        // CONFIRM SLIDE DIRECTIONS AGAIN!!!!
         if (gamepad1.dpad_up) {
             liftMotorLeft.setPower(1);
             liftMotorRight.setPower(1);
