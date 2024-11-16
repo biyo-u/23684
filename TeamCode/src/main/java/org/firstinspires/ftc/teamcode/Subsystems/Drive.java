@@ -1,45 +1,104 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.teamcode.Robot;
 
 public class Drive {
-    public DcMotor front_left;
-    public DcMotor rear_left;
-    public DcMotor front_right;
-    public DcMotor rear_right;
+    private final DcMotor frontLeft;
+    private final DcMotor frontRight;
+    private final DcMotor rearLeft;
+    private final DcMotor rearRight;
+    private final Robot robot;
+    private double power;
 
-    public Drive(DcMotor front_left, DcMotor front_right, DcMotor rear_left, DcMotor rear_right){
-        this.front_left = front_left;
-        this.front_right = front_right;
-        this.rear_left = rear_left;
-        this.rear_right = rear_right;
+    // TODO: Document with Gemini Code Assist
 
-        this.front_left.setDirection(DcMotorSimple.Direction.REVERSE);
-        this.front_right.setDirection(DcMotorSimple.Direction.REVERSE);
-        this.rear_left.setDirection(DcMotorSimple.Direction.REVERSE);
-        this.rear_right.setDirection(DcMotorSimple.Direction.FORWARD);
+    public Drive(DcMotor frontLeft, DcMotor frontRight, DcMotor rearLeft, DcMotor rearRight, Robot robot) {
+        this.frontLeft = frontLeft;
+        this.frontRight = frontRight;
+        this.rearLeft = rearLeft;
+        this.rearRight = rearRight;
+        this.frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        this.frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        this.rearLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        this.rearRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        this.frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        this.frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        this.rearLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        this.rearRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        this.robot = robot;
+        this.power = 0.5;
     }
 
-    // TODO: Add other common functions
+    public void driveMecanumFieldCentric(double left_stick_y, double left_stick_x, double right_stick_x, Compass imu) {
+        // TODO: Make sure this is needed and doesn't just cause problems
+        double y = -left_stick_y; // Remember, Y stick value is reversed
 
-    public void setFrontLeftSpeed(double speed){
-        front_left.setPower(speed);
-    }
-    public void setFrontRightSpeed(double speed){
-        front_right.setPower(speed);
-    }
-    public void setRearLeftSpeed(double speed){
-        rear_left.setPower(speed);
-    }
-    public void setRearRightSpeed(double speed){
-        rear_right.setPower(speed);
+        // Gets robot heading (direction it's pointing)
+        double botHeading = imu.getHeading(AngleUnit.RADIANS);
+
+        // Rotate the movement direction counter to the bot's rotation
+        double rotX = left_stick_x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
+        double rotY = left_stick_x * Math.sin(-botHeading) + y * Math.cos(-botHeading);
+
+        // TODO: Make sure this is needed and doesn't just cause problems
+        rotX = rotX * 1.1;  // Counteract imperfect strafing
+
+        // Denominator is the largest motor power (absolute value) or 1
+        // This ensures all the powers maintain the same ratio,
+        // but only if at least one is out of the range [-1, 1]
+        double denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(right_stick_x), 1);
+        double frontLeftPower = ((rotY + rotX + right_stick_x) / denominator) * power;
+        double backLeftPower = ((rotY - rotX + right_stick_x) / denominator) * power;
+        double frontRightPower = ((rotY - rotX - right_stick_x) / denominator) * power;
+        double backRightPower = ((rotY + rotX - right_stick_x) / denominator) * power;
+
+        frontLeft.setPower(frontLeftPower);
+        frontRight.setPower(frontRightPower);
+        rearLeft.setPower(backLeftPower);
+        rearRight.setPower(backRightPower);
     }
 
-    public void setMotorSpeeds(double front_left_speed, double front_right_speed, double rear_left_speed, double rear_right_speed){
-        setFrontLeftSpeed(front_left_speed);
-        setFrontRightSpeed(front_right_speed);
-        setRearLeftSpeed(rear_left_speed);
-        setRearRightSpeed(rear_right_speed);
+    public void driveMecanumRobotCentric(double left_stick_y, double left_stick_x, double right_stick_x) {
+        // TODO: Make sure this is needed and doesn't just cause problems
+        double y = -left_stick_y; // Remember, Y stick value is reversed
+        // TODO: Make sure this is needed and doesn't just cause problems
+        double x = left_stick_x * 1.1; // Counteract imperfect strafing
+
+        // Denominator is the largest motor power (absolute value) or 1
+        // This ensures all the powers maintain the same ratio,
+        // but only if at least one is out of the range [-1, 1]
+        double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(right_stick_x), 1);
+        double frontLeftPower = (y + x + right_stick_x) / denominator;
+        double backLeftPower = (y - x + right_stick_x) / denominator;
+        double frontRightPower = (y - x - right_stick_x) / denominator;
+        double backRightPower = (y + x - right_stick_x) / denominator;
+
+        frontLeft.setPower(frontLeftPower);
+        frontRight.setPower(frontRightPower);
+        rearLeft.setPower(backLeftPower);
+        rearRight.setPower(backRightPower);
+    }
+
+    public void setPower(double power) {
+        this.power = power;
+    }
+
+    public DcMotor getFrontLeft() {
+        return frontLeft;
+    }
+
+    public DcMotor getFrontRight() {
+        return frontRight;
+    }
+
+    public DcMotor getRearLeft() {
+        return rearLeft;
+    }
+
+    public DcMotor getRearRight() {
+        return rearRight;
     }
 }
