@@ -117,27 +117,59 @@ public class Diagnostics extends OpMode {
         telemetry.addData("Right Bumper", "Hangs Up");
         telemetry.addData("Left Bumper", "Hangs Down");
 
-        // CONFIRM MOTOR DIRECTION
-        if (gamepad1.x) {
-            frontLeft.setPower(0.3);
+//        // CONFIRM MOTOR DIRECTION
+//        if (gamepad1.x) {
+//            frontLeft.setPower(0.3);
+//        } else {
+//            frontLeft.setPower(0);
+//        }
+//        if (gamepad1.y) {
+//            frontRight.setPower(0.3);
+//        } else {
+//            frontRight.setPower(0);
+//        }
+//        if (gamepad1.a) {
+//            rearLeft.setPower(0.3);
+//        } else {
+//            rearLeft.setPower(0);
+//        }
+//        if (gamepad1.b) {
+//            rearRight.setPower(0.3);
+//        } else {
+//            rearRight.setPower(0);
+//        }
+
+        // convert joystick inputs into numbers indicating direction
+        double y = gamepad1.right_stick_y; // Remember, Y stick value is reversed
+        double x = gamepad1.right_stick_x * 1.1; // Counteract imperfect strafing
+        double rx = gamepad1.left_stick_x;
+        double power;
+
+        // convert joystick direction numbers into power values
+        /* Denominator is the largest motor power (absolute value) or 1
+        This ensures all the powers maintain the same ratio,
+        but only if at least one is out of the range [-1, 1] */
+        double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
+
+        // Speed Controls
+        if (gamepad1.options) {
+            power = 1;
         } else {
-            frontLeft.setPower(0);
+            power = 2.5;
         }
-        if (gamepad1.y) {
-            frontRight.setPower(0.3);
-        } else {
-            frontRight.setPower(0);
-        }
-        if (gamepad1.a) {
-            rearLeft.setPower(0.3);
-        } else {
-            rearLeft.setPower(0);
-        }
-        if (gamepad1.b) {
-            rearRight.setPower(0.3);
-        } else {
-            rearRight.setPower(0);
-        }
+
+        // calculate the power value, dividing first by the denominator, then by speed
+        double frontLeftPower = ((y - x - rx) / denominator) / power;
+        double backLeftPower = ((y + x - rx) / denominator) / power;
+        double frontRightPower = ((y + x + rx) / denominator) / power;
+        double backRightPower = ((y - x + rx) / denominator) / power;
+
+        // send power to the mecanum wheels using power values indicated
+        frontLeft.setPower(frontLeftPower);
+        rearLeft.setPower(backLeftPower);
+        frontRight.setPower(frontRightPower);
+        rearRight.setPower(backRightPower);
+
 
         // CONFIRM SLIDE DIRECTIONS AGAIN!!!!
         if (gamepad1.dpad_up) {
