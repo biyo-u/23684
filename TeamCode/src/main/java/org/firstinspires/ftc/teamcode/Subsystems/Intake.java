@@ -14,7 +14,7 @@ public class Intake {
     // TODO: Test if this works or if it needs to be a DcMotorSimple
     private final DcMotor elbowMotor;
 
-    private final Servo clawLiftServo;
+    private final Servo wristServo;
 
     /**
      * Constructor for the Intake subsystem.
@@ -22,13 +22,13 @@ public class Intake {
      * @param intakeServo The CRServo object representing the intake roller motor.
      * @param clawServo   The Servo object representing the claw servo.
      * @param elbowMotor  The DcMotor object representing the elbow motor.
-     * @param clawLiftServo The servo object representing the claw lift.
+     * @param wristServo The servo object representing the claw lift.
      */
-    public Intake(CRServo intakeServo, Servo clawServo, DcMotor elbowMotor ,Servo clawLiftServo) {
+    public Intake(CRServo intakeServo, Servo clawServo, DcMotor elbowMotor ,Servo wristServo) {
         this.intakeServo = intakeServo;
         this.clawServo = clawServo;
         this.elbowMotor = elbowMotor;
-        this.clawLiftServo = clawLiftServo;
+        this.wristServo = wristServo;
     }
 
     /**
@@ -76,13 +76,15 @@ public class Intake {
         clawServo.setPosition(1);
     }
 
-    public void clawLiftExtend(){clawLiftServo.setPosition(1);}
+    public void wristExtend(){
+        wristServo.setPosition(1);}
 
     /**
      * This would extend the claw outward to score
      *
      */
-    public void clawLiftDescend(){clawLiftServo.setPosition(0);}
+    public void WristDescend(){
+        wristServo.setPosition(0);}
 
     /**
      *

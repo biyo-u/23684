@@ -5,7 +5,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Robot;
-import org.firstinspires.ftc.teamcode.Subsystems.Intake;
 
 @TeleOp(name = "FieldCentricTeleOp", group = "1.TeleOp")
 public class FieldCentricTeleOp extends OpMode {
@@ -42,9 +41,9 @@ public class FieldCentricTeleOp extends OpMode {
             robot.intake.intakeStop();
         }
         if (gamepad2.x){
-            robot.intake.clawLiftExtend();
+            robot.intake.wristExtend();
         }else{
-            robot.intake.clawLiftDescend();
+            robot.intake.WristDescend();
         }
 
         // Lift
