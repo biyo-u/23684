@@ -11,6 +11,7 @@ public class Constants {
     public static final double intakeSpeed = 1;
     public static final double elbowSpeedMultiplier = 0.3;
     public static final double odometryWeight = 0.2;
+    // TODO: Map values from threshold to 1/-1 for precise movement even with a dead zone
     public static final double intakeThreshold = 0.2;
     public static final double liftThreshold = 0.2;
     public static final double shoulderThreshold = 0.2;
