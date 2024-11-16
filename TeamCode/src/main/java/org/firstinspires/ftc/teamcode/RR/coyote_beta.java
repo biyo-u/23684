@@ -63,11 +63,13 @@ public class coyote_beta extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         Pose2d initalPose = new Pose2d(0, 0, Math.toRadians(0));
         robot = new Robot(hardwareMap, telemetry, false);
-        robot drive = new Robot(hardwareMap, telemetry, telemetry, false, initalPose);
+        Robot robot1 = this.robot;
+        robot1 = new Robot(hardwareMap, telemetry, telemetry, false, initalPose); // TODO: Fix this.
 
         MoveForward moveForward = new MoveForward();
     }
     int visionOutPutPosition = 1;
 
     // TODO: Figure out why TrajectoryActionBuilder is not working
+    // TODO: Fix robot class issues (its like wack-a-mole out here)
 }
