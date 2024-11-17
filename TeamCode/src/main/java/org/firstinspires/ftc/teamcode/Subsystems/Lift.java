@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Constants;
 
@@ -14,8 +13,6 @@ public class Lift {
     private final DcMotor shoulderMotor;
 //    private final Servo first_hang_right;
 //    private final Servo first_hang_left;
-
-    // TODO: Add firstHang and come up with a better name for it
 
     /**
      * Constructor for the Lift class.
