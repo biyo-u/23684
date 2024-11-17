@@ -9,10 +9,10 @@ import java.util.Locale;
 public class Lift {
     private final DcMotor liftMotorLeft;
     private final DcMotor liftMotorRight;
-    private final DcMotor liftMotorTilt;
     private final DcMotor shoulderMotor;
-//    private final Servo first_hang_right;
-//    private final Servo first_hang_left;
+    private final Servo liftServoTilt;
+    private final Servo rightHangServo;
+    private final Servo leftHangServo;
 
     /**
      * Constructor for the Lift class.
@@ -21,20 +21,22 @@ public class Lift {
      *
      * @param liftMotorLeft  The left lift motor.
      * @param liftMotorRight The right lift motor.
-     * @param liftMotorTilt  The tilt lift motor.
+     * @param liftServoTilt  The tilt lift servo.
+     * @param rightHangServo The right hang servo.
+     * @param leftHangServo  The left hang servo.
      */
-    public Lift(DcMotor liftMotorLeft, DcMotor liftMotorRight, DcMotor liftMotorTilt, DcMotor shoulderMotor) {
+    public Lift(DcMotor liftMotorLeft, DcMotor liftMotorRight, DcMotor shoulderMotor, Servo liftServoTilt, Servo rightHangServo, Servo leftHangServo) {
         this.liftMotorLeft = liftMotorLeft;
         this.liftMotorRight = liftMotorRight;
-        this.liftMotorTilt = liftMotorTilt;
         this.shoulderMotor = shoulderMotor;
+        this.liftServoTilt = liftServoTilt;
+        this.rightHangServo = rightHangServo;
+        this.leftHangServo = leftHangServo;
         this.liftMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.liftMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        this.liftMotorTilt.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.shoulderMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.liftMotorLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         this.liftMotorRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        this.liftMotorTilt.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         this.shoulderMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
@@ -55,23 +57,13 @@ public class Lift {
      * This method sets the power of the lift motor based on the provided speed.
      * It also ensures that the lift stays within its defined limits using {@link Constants#liftForwardLimit} and {@link Constants#liftBackwardLimit}.
      *
-     * @param speed The desired speed of the lift motor.
+     * @param position The desired position of the lift motor.
      *              Positive values tilt the lift forward,
      *              negative values tilt it backward,
      *              and 0 stops the motor.
      */
-    public void liftTilt(double speed) {
-        if (speed > 0) {
-            if (liftMotorTilt.getCurrentPosition() < Constants.liftForwardLimit) {
-                liftMotorTilt.setPower(speed);
-            }
-        } else if (speed < 0) {
-            if (liftMotorTilt.getCurrentPosition() > Constants.liftBackwardLimit) {
-                liftMotorTilt.setPower(speed);
-            }
-        } else {
-            liftMotorTilt.setPower(0);
-        }
+    public void liftTilt(double position) {
+        liftServoTilt.setPosition(position);
     }
 
     /**
@@ -102,11 +94,17 @@ public class Lift {
         }
     }
 
+    // TODO: Document
+    public void hang(double rightHang, double leftHang) {
+        rightHangServo.setPosition(rightHang);
+        leftHangServo.setPosition(leftHang);
+
+    }
     public String getTelemetry() {
         return String.format(Locale.getDefault(), """
                 Lift Motor Left: %d
                 Lift Motor Right: %d
-                Lift Motor Tilt: %d
-                Shoulder Motor: %d""", liftMotorLeft.getCurrentPosition(), liftMotorRight.getCurrentPosition(), liftMotorTilt.getCurrentPosition(), shoulderMotor.getCurrentPosition());
+                Lift Motor Tilt: %f
+                Shoulder Motor: %d""", liftMotorLeft.getCurrentPosition(), liftMotorRight.getCurrentPosition(), liftServoTilt.getPosition(), shoulderMotor.getCurrentPosition());
     }
 }

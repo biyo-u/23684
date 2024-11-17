@@ -29,7 +29,7 @@ public class FieldCentricTeleOp extends OpMode {
         if (gamepad1.right_bumper) {
             robot.drive.setPower(1);
         } else {
-            robot.drive.setPower(0.5);
+            robot.drive.setPower(0.6);
         }
 
         // Intake
@@ -42,9 +42,9 @@ public class FieldCentricTeleOp extends OpMode {
         }
 
         // Wrist TODO: Add x and y key in README.md
-        if (gamepad2.x){
+        if (gamepad2.y){
             robot.intake.wristUp();
-        } else if (gamepad2.y) {
+        } else if (gamepad2.x) {
             robot.intake.wristDown();
         }
 
@@ -56,6 +56,8 @@ public class FieldCentricTeleOp extends OpMode {
         } else {
             robot.lift.liftMove(0);
         }
+
+        // Lift Tilt
         if (gamepad2.left_stick_x > Constants.liftThreshold) {
             robot.lift.liftTilt(gamepad2.left_stick_x);
         } else if (gamepad2.left_stick_x < -Constants.liftThreshold) {
@@ -80,6 +82,20 @@ public class FieldCentricTeleOp extends OpMode {
             robot.intake.elbowMove(gamepad2.right_stick_y);
         } else {
             robot.intake.elbowMove(0);
+        }
+
+        // Hang Hooks
+        if (gamepad2.dpad_up) {
+            robot.lift.hang(1, 0);
+        } else if (gamepad2.dpad_down) {
+            robot.lift.hang(0.1, 0.7);
+        }
+
+        // Claw
+        if (gamepad2.a) {
+            robot.intake.clawOpen();
+        } else if (gamepad2.b) {
+            robot.intake.clawClose();
         }
 
         // Telemetry

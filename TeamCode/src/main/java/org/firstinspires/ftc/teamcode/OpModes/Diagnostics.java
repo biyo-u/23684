@@ -114,8 +114,8 @@ public class Diagnostics extends OpMode {
         telemetry.addData("B Key", "Claw Pos B"); // open
         telemetry.addData("D Pad Up", "Elbow +1 Power");
         telemetry.addData("D Pad Down", "Elbow -1 Power");
-        telemetry.addData("D Pad Left", "Claw Pos A");
-        telemetry.addData("D Pad Right", "Claw Pos B");
+        telemetry.addData("D Pad Left", "Wrist Pos A");
+        telemetry.addData("D Pad Right", "Wrist Pos B");
         telemetry.addData("Right Bumper", "Hangs Up");
         telemetry.addData("Left Bumper", "Hangs Down");
 
