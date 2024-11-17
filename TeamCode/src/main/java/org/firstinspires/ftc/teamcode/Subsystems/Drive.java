@@ -24,6 +24,10 @@ public class Drive {
         this.frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.rearLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.rearRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        this.frontLeft.setDirection(DcMotor.Direction.FORWARD);
+        this.frontRight.setDirection(DcMotor.Direction.REVERSE);
+        this.rearLeft.setDirection(DcMotor.Direction.FORWARD);
+        this.rearRight.setDirection(DcMotor.Direction.REVERSE);
         this.frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         this.frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         this.rearLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);

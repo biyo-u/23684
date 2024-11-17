@@ -15,8 +15,6 @@ public class Lift {
     private final Servo rightHangServo;
     private final Servo leftHangServo;
 
-    // TODO: Add firstHang and come up with a better name for it
-
     /**
      * Constructor for the Lift class.
      * <p>
@@ -38,6 +36,8 @@ public class Lift {
         this.liftMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.liftMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.shoulderMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        this.liftMotorLeft.setDirection(DcMotor.Direction.REVERSE);
+        this.liftMotorRight.setDirection(DcMotor.Direction.FORWARD);
         this.liftMotorLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         this.liftMotorRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         this.shoulderMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -50,8 +50,11 @@ public class Lift {
      *              Positive values move the lift up, negative values move it down.
      */
     public void liftMove(double speed) {
-        liftMotorLeft.setPower(speed);
-        liftMotorRight.setPower(speed);
+
+        if (liftMotorLeft.getCurrentPosition() < Constants.liftLeftForwardLimit && liftMotorRight.getCurrentPosition() > Constants.liftRightForwardLimit) {
+            liftMotorLeft.setPower(speed);
+            liftMotorRight.setPower(speed);
+        }
     }
 
     /**
@@ -66,7 +69,7 @@ public class Lift {
      *              and 0 stops the motor.
      */
     public void liftTilt(double position) {
-        liftServoTilt.setPosition(position);
+        liftServoTilt.setPosition(liftServoTilt.getPosition() + position);
     }
 
     /**
@@ -101,8 +104,8 @@ public class Lift {
     public void hang(double rightHang, double leftHang) {
         rightHangServo.setPosition(rightHang);
         leftHangServo.setPosition(leftHang);
-
     }
+
     public String getTelemetry() {
         return String.format(Locale.getDefault(), """
                 Lift Motor Left: %d

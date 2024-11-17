@@ -89,9 +89,9 @@ public class Intake {
             elbowMotor.setPower(-speed * Constants.elbowSpeedMultiplier);
         } else if (speed < 0 && elbowMotor.getCurrentPosition() < Constants.elbowBackwardLimit) {
             elbowMotor.setPower(speed * Constants.elbowSpeedMultiplier);
+        } else {
+            elbowMotor.setPower(-speed * Constants.elbowSpeedMultiplier);
         }
-
-        elbowMotor.setPower(-speed * Constants.elbowSpeedMultiplier);
     }
 
     public String getTelemetry() {
