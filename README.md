@@ -1,6 +1,7 @@
-# 23684 MAIN
-Variable, Robot config, and functions are always camelCase
-Classes are always PascalCase
+# 23684
+
+*Variables (except enums), Robot config, and functions* are always *camelCase*
+*Classes and enums* are always *PascalCase*
 Drive motors will be names weather they front or rear + weather they are left or right (like
 frontLeft, frontRight, rearLeft, rearRight)
 In any order where 4 drive motors are needed, they must be in the order: frontLeft, frontRight,

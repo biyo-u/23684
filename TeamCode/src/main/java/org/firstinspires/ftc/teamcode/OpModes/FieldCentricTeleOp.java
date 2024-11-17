@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Robot;
 
-@TeleOp(name = "FieldCentricTeleOp", group = "1.TeleOp")
+@TeleOp(name = "FieldCentricTeleOp", group = Constants.GroupNames.TeleOp)
 public class FieldCentricTeleOp extends OpMode {
     private Robot robot;
 
@@ -40,11 +40,12 @@ public class FieldCentricTeleOp extends OpMode {
         } else {
             robot.intake.intakeStop();
         }
-        
+
+        // Wrist TODO: Add x and y key in README.md
         if (gamepad2.x){
-            robot.intake.wristExtend();
-        }else{
-            robot.intake.WristDescend();
+            robot.intake.wristUp();
+        } else if (gamepad2.y) {
+            robot.intake.wristDown();
         }
 
         // Lift

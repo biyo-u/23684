@@ -13,7 +13,6 @@ public class Intake {
     private final Servo clawServo;
     // TODO: Test if this works or if it can be a DcMotor
     private final DcMotorSimple elbowMotor;
-
     private final Servo wristServo;
 
     /**
@@ -76,20 +75,14 @@ public class Intake {
         clawServo.setPosition(1);
     }
 
-    public void wristExtend(){
+    // TODO: Document
+    public void wristUp() {
         wristServo.setPosition(1);}
 
-    /**
-     * This would extend the claw outward to score
-     *
-     */
-    public void WristDescend(){
-        wristServo.setPosition(0);}
-
-    /**
-     *
-     * this would tuck away the claw into the robot
-     */
+    // TODO: Document
+    public void wristDown() {
+        wristServo.setPosition(0);
+    }
 
     // TODO: Document with Gemini Code Assist
     public void elbowMove(double speed) {
@@ -100,6 +93,7 @@ public class Intake {
         return String.format(Locale.getDefault(), """
                 Elbow Motor: NO DATA
                 Claw Servo: %f
-                Intake Servo: %f""", clawServo.getPosition(), intakeServo.getPower());
+                Intake Servo: %f
+                Wrist Servo: %f""", clawServo.getPosition(), intakeServo.getPower(), wristServo.getPosition());
     }
 }

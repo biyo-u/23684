@@ -21,7 +21,6 @@ public class Odometry {
 
         // Sets Odometry offsets
         // TODO: Tune odometry offsets with our final robot
-        // TODO: Change odo.setOffsets to robot specification
         // TODO: Confirm setEncoderDirections by running EncoderDirectionTest
         this.odometry.setOffsets(-173.0, -156); //measured in mm
         this.odometry.setEncoderResolution(GoBildaPinpointDriverRR.GoBildaOdometryPods.goBILDA_SWINGARM_POD);
