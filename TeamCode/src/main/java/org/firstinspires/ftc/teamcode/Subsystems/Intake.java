@@ -11,7 +11,6 @@ import java.util.Locale;
 public class Intake {
     private final CRServo intakeServo;
     private final Servo clawServo;
-    // TODO: Test if this works or if it can be a DcMotorSimple
     private final DcMotor elbowMotor;
     private final Servo wristServo;
 

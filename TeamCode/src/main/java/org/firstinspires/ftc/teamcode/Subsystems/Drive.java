@@ -62,9 +62,7 @@ public class Drive {
     }
 
     public void driveMecanumRobotCentric(double left_stick_y, double left_stick_x, double right_stick_x) {
-        // TODO: Make sure this is needed and doesn't just cause problems
         double y = -left_stick_y; // Remember, Y stick value is reversed
-        // TODO: Make sure this is needed and doesn't just cause problems
         double x = left_stick_x * 1.1; // Counteract imperfect strafing
 
         // Denominator is the largest motor power (absolute value) or 1

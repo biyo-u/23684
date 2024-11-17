@@ -12,8 +12,8 @@ public class Lift {
     private final DcMotor liftMotorRight;
     private final DcMotor liftMotorTilt;
     private final DcMotor shoulderMotor;
-//    private final Servo first_hang_right;
-//    private final Servo first_hang_left;
+    private final Servo rightHangServo;
+    private final Servo leftHangServo;
 
     // TODO: Add firstHang and come up with a better name for it
 
@@ -25,12 +25,16 @@ public class Lift {
      * @param liftMotorLeft  The left lift motor.
      * @param liftMotorRight The right lift motor.
      * @param liftMotorTilt  The tilt lift motor.
+     * @param rightHangServo The right hang servo.
+     * @param leftHangServo  The left hang servo.
      */
-    public Lift(DcMotor liftMotorLeft, DcMotor liftMotorRight, DcMotor liftMotorTilt, DcMotor shoulderMotor) {
+    public Lift(DcMotor liftMotorLeft, DcMotor liftMotorRight, DcMotor liftMotorTilt, DcMotor shoulderMotor, Servo rightHangServo, Servo leftHangServo) {
         this.liftMotorLeft = liftMotorLeft;
         this.liftMotorRight = liftMotorRight;
         this.liftMotorTilt = liftMotorTilt;
         this.shoulderMotor = shoulderMotor;
+        this.rightHangServo = rightHangServo;
+        this.leftHangServo = leftHangServo;
         this.liftMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.liftMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.liftMotorTilt.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -105,6 +109,11 @@ public class Lift {
         }
     }
 
+    public void hang(double rightHang, double leftHang) {
+        rightHangServo.setPosition(rightHang);
+        leftHangServo.setPosition(leftHang);
+
+    }
     public String getTelemetry() {
         return String.format(Locale.getDefault(), """
                 Lift Motor Left: %d
