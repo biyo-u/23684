@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
 import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Constants;
@@ -11,8 +11,8 @@ import java.util.Locale;
 public class Intake {
     private final CRServo intakeServo;
     private final Servo clawServo;
-    // TODO: Test if this works or if it can be a DcMotor
-    private final DcMotorSimple elbowMotor;
+    // TODO: Test if this works or if it can be a DcMotorSimple
+    private final DcMotor elbowMotor;
     private final Servo wristServo;
 
     /**
@@ -23,7 +23,7 @@ public class Intake {
      * @param elbowMotor  The DcMotor object representing the elbow motor.
      * @param wristServo The servo object representing the claw lift.
      */
-    public Intake(CRServo intakeServo, Servo clawServo, DcMotorSimple elbowMotor, Servo wristServo) {
+    public Intake(CRServo intakeServo, Servo clawServo, DcMotor elbowMotor, Servo wristServo) {
         this.intakeServo = intakeServo;
         this.clawServo = clawServo;
         this.elbowMotor = elbowMotor;
@@ -91,9 +91,9 @@ public class Intake {
 
     public String getTelemetry() {
         return String.format(Locale.getDefault(), """
-                Elbow Motor: NO DATA
+                Elbow Motor: %d
                 Claw Servo: %f
                 Intake Servo: %f
-                Wrist Servo: %f""", clawServo.getPosition(), intakeServo.getPower(), wristServo.getPosition());
+                Wrist Servo: %f""", elbowMotor.getCurrentPosition(), clawServo.getPosition(), intakeServo.getPower(), wristServo.getPosition());
     }
 }

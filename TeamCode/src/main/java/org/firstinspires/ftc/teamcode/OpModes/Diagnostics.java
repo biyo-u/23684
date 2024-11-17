@@ -39,7 +39,7 @@ public class Diagnostics extends OpMode {
         Servo wristServo = hardwareMap.get(Servo.class, "wristServo");
         Servo first_hang_right = hardwareMap.get(Servo.class, "first_hang_right");
         Servo first_hang_left = hardwareMap.get(Servo.class, "first_hang_left");
-        DcMotorSimple elbowMotor = hardwareMap.get(DcMotorSimple.class, "elbowMotor");
+        DcMotor elbowMotor = hardwareMap.get(DcMotor.class, "elbowMotor");
         DcMotor liftMotorLeft = hardwareMap.get(DcMotor.class, "liftMotorLeft");
         DcMotor liftMotorRight = hardwareMap.get(DcMotor.class, "liftMotorRight");
         DcMotor liftMotorTilt = hardwareMap.get(DcMotor.class, "liftMotorTilt");
