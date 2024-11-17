@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.acmerobotics.roadrunner.ftc.GoBildaPinpointDriverRR;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -26,7 +27,7 @@ public class Robot {
         CRServo intakeServo = hardwareMap.get(CRServo.class, "intakeServo");
         Servo clawServo = hardwareMap.get(Servo.class, "clawServo");
         // TODO: Test if this works or if it needs to be a DcMotorSimple
-        DcMotor elbowMotor = hardwareMap.get(DcMotor.class, "elbowMotor");
+        DcMotorSimple elbowMotor = hardwareMap.get(DcMotorSimple.class, "elbowMotor");
         DcMotor liftMotorLeft = hardwareMap.get(DcMotor.class, "liftMotorLeft");
         DcMotor liftMotorRight = hardwareMap.get(DcMotor.class, "liftMotorRight");
         DcMotor liftMotorTilt = hardwareMap.get(DcMotor.class, "liftMotorTilt");

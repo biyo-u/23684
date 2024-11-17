@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
 import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Constants;
@@ -11,8 +11,8 @@ import java.util.Locale;
 public class Intake {
     private final CRServo intakeServo;
     private final Servo clawServo;
-    // TODO: Test if this works or if it needs to be a DcMotorSimple
-    private final DcMotor elbowMotor;
+    // TODO: Test if this works or if it can be a DcMotor
+    private final DcMotorSimple elbowMotor;
 
     /**
      * Constructor for the Intake subsystem.
@@ -21,7 +21,7 @@ public class Intake {
      * @param clawServo   The Servo object representing the claw servo.
      * @param elbowMotor  The DcMotor object representing the elbow motor.
      */
-    public Intake(CRServo intakeServo, Servo clawServo, DcMotor elbowMotor) {
+    public Intake(CRServo intakeServo, Servo clawServo, DcMotorSimple elbowMotor) {
         this.intakeServo = intakeServo;
         this.clawServo = clawServo;
         this.elbowMotor = elbowMotor;
@@ -74,17 +74,13 @@ public class Intake {
 
     // TODO: Document with Gemini Code Assist
     public void elbowMove(double speed) {
-        if (speed > 0 && elbowMotor.getCurrentPosition() > Constants.elbowForwardLimit) {
-            elbowMotor.setPower(-speed * Constants.elbowSpeedMultiplier);
-        } else if (speed < 0 && elbowMotor.getCurrentPosition() < Constants.elbowBackwardLimit) {
-            elbowMotor.setPower(speed * Constants.elbowSpeedMultiplier);
-        }
+        elbowMotor.setPower(-speed * Constants.elbowSpeedMultiplier);
     }
 
     public String getTelemetry() {
         return String.format(Locale.getDefault(), """
-                Elbow Motor: %d
+                Elbow Motor: NO DATA
                 Claw Servo: %f
-                Intake Servo: %f""", elbowMotor.getCurrentPosition(), clawServo.getPosition(), intakeServo.getPower());
+                Intake Servo: %f""", clawServo.getPosition(), intakeServo.getPower());
     }
 }
