@@ -30,12 +30,12 @@ public class Robot {
         DcMotor elbowMotor = hardwareMap.get(DcMotor.class, "elbowMotor");
         DcMotor liftMotorLeft = hardwareMap.get(DcMotor.class, "liftMotorLeft");
         DcMotor liftMotorRight = hardwareMap.get(DcMotor.class, "liftMotorRight");
-        DcMotor liftMotorTilt = hardwareMap.get(DcMotor.class, "liftMotorTilt");
         DcMotor shoulderMotor = hardwareMap.get(DcMotor.class, "shoulderMotor");
         DcMotor frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
         DcMotor frontRight = hardwareMap.get(DcMotor.class, "frontRight");
         DcMotor rearLeft = hardwareMap.get(DcMotor.class, "rearLeft");
         DcMotor rearRight = hardwareMap.get(DcMotor.class, "rearRight");
+        Servo liftServoTilt = hardwareMap.get(Servo.class, "liftServoTilt");
         Servo rightHangServo = hardwareMap.get(Servo.class, "rightHangServo");
         Servo leftHangServo = hardwareMap.get(Servo.class, "leftHangServo");
         IMU imu = hardwareMap.get(IMU.class, "imu");
@@ -44,7 +44,7 @@ public class Robot {
         // Initialize Public Subsystems
         compass = new Compass(imu);
         intake = new Intake(intakeServo, clawServo, elbowMotor, wristServo);
-        lift = new Lift(liftMotorLeft, liftMotorRight, liftMotorTilt, shoulderMotor, leftHangServo, rightHangServo);
+        lift = new Lift(liftMotorLeft, liftMotorRight, shoulderMotor, liftServoTilt, leftHangServo, rightHangServo);
         drive = new Drive(frontLeft, frontRight, rearLeft, rearRight, this);
         odometry = new Odometry(odometryComputer, compass);
     }

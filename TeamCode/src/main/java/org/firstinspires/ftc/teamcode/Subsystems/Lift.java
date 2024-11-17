@@ -12,6 +12,7 @@ public class Lift {
     private final DcMotor liftMotorRight;
     private final DcMotor liftMotorTilt;
     private final DcMotor shoulderMotor;
+    private final Servo liftServoTilt;
     private final Servo rightHangServo;
     private final Servo leftHangServo;
 
@@ -24,24 +25,22 @@ public class Lift {
      *
      * @param liftMotorLeft  The left lift motor.
      * @param liftMotorRight The right lift motor.
-     * @param liftMotorTilt  The tilt lift motor.
+     * @param liftServoTilt  The tilt lift servo.
      * @param rightHangServo The right hang servo.
      * @param leftHangServo  The left hang servo.
      */
-    public Lift(DcMotor liftMotorLeft, DcMotor liftMotorRight, DcMotor liftMotorTilt, DcMotor shoulderMotor, Servo rightHangServo, Servo leftHangServo) {
+    public Lift(DcMotor liftMotorLeft, DcMotor liftMotorRight, DcMotor shoulderMotor, Servo liftServoTilt, Servo rightHangServo, Servo leftHangServo) {
         this.liftMotorLeft = liftMotorLeft;
         this.liftMotorRight = liftMotorRight;
-        this.liftMotorTilt = liftMotorTilt;
         this.shoulderMotor = shoulderMotor;
+        this.liftServoTilt = liftServoTilt;
         this.rightHangServo = rightHangServo;
         this.leftHangServo = leftHangServo;
         this.liftMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.liftMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        this.liftMotorTilt.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.shoulderMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.liftMotorLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         this.liftMotorRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        this.liftMotorTilt.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         this.shoulderMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
