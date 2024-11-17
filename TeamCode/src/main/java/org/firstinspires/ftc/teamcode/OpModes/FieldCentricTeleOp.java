@@ -8,6 +8,8 @@ import org.firstinspires.ftc.teamcode.Robot;
 
 @TeleOp(name = "FieldCentricTeleOp", group = Constants.GroupNames.TeleOp)
 public class FieldCentricTeleOp extends OpMode {
+    // TODO: IMPORTANT! Add the preselect auto when we get one
+
     private Robot robot;
 
     @Override
@@ -18,7 +20,7 @@ public class FieldCentricTeleOp extends OpMode {
     @Override
     public void loop() {
         // Drive the robot with the gamepad
-        robot.drive.driveMecanumFieldCentric(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x, robot.compass);
+        robot.drive.driveMecanumFieldCentric(gamepad1.left_stick_y, gamepad1.left_stick_x, -gamepad1.right_stick_x, robot.compass);
 
         // Reset IMU for Field Centric
         if (gamepad1.left_bumper) {
@@ -58,12 +60,8 @@ public class FieldCentricTeleOp extends OpMode {
         }
 
         // Lift Tilt
-        if (gamepad2.left_stick_x > Constants.liftThreshold) {
+        if (gamepad2.left_stick_x > 0.2 || gamepad2.left_stick_x < -0.2) {
             robot.lift.liftTilt(gamepad2.left_stick_x);
-        } else if (gamepad2.left_stick_x < -Constants.liftThreshold) {
-            robot.lift.liftTilt(gamepad2.left_stick_x);
-        } else {
-            robot.lift.liftTilt(0);
         }
 
         // Shoulder

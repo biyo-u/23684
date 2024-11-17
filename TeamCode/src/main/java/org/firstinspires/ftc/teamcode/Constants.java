@@ -2,7 +2,9 @@ package org.firstinspires.ftc.teamcode;
 
 public class Constants {
     // TODO: Find these values
-    public static final int liftForwardLimit = 999999;
+    public static final int liftLeftForwardLimit = 8333;
+    public static final int liftRightForwardLimit = 8013;
+    public static final int liftForwardLimit = 8013;
     public static final int liftBackwardLimit = -999999;
     // TODO: Test elbow with DcMotor to see if encoder works, otherwise remove these variables
     public static final int elbowForwardLimit = -999999;
