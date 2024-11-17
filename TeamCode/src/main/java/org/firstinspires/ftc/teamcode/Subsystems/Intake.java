@@ -86,6 +86,12 @@ public class Intake {
 
     // TODO: Document with Gemini Code Assist
     public void elbowMove(double speed) {
+        if (speed > 0 && elbowMotor.getCurrentPosition() > Constants.elbowForwardLimit) {
+            elbowMotor.setPower(-speed * Constants.elbowSpeedMultiplier);
+        } else if (speed < 0 && elbowMotor.getCurrentPosition() < Constants.elbowBackwardLimit) {
+            elbowMotor.setPower(speed * Constants.elbowSpeedMultiplier);
+        }
+
         elbowMotor.setPower(-speed * Constants.elbowSpeedMultiplier);
     }
 
