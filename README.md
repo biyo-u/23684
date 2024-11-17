@@ -1,3 +1,4 @@
+# 23684 MAIN
 Variable, Robot config, and functions are always camelCase
 Classes are always PascalCase
 Drive motors will be names weather they front or rear + weather they are left or right (like
@@ -10,30 +11,30 @@ If there isn't a way to set power (like moveUp and moveDown) then there should b
 
 TODO: Label controller
 
-Gamepad` 1 (Drive):
+### Gamepad 1 (Drive):
 
-Left Bumper: Reset IMU
-Right Bumper: Speed Mode
-Left Trigger: Nothing
-Right Trigger: Nothing
-Left Joystick: Drive
-Right Joystick: Turn
-DPad: Nothing
-X: Nothing
-Y: Nothing
-A: Nothing
-B: Nothing
+- Left Bumper: Reset IMU
+- Right Bumper: Speed Mode
+- Left Trigger: Nothing
+- Right Trigger: Nothing
+- Left Joystick: Drive
+- Right Joystick: Turn
+- DPad: Nothing
+- X: Nothing
+- Y: Nothing
+- A: Nothing
+- B: Nothing
 
-Gamepad 2 (Actions):
+### Gamepad 2 (Actions):
 
-Left Bumper: Nothing
-Right Bumper: Nothing
-Left Trigger: Intake In
-Right Trigger: Intake Out
-Left Joystick: Lift (Up, Down, Tilt Left, and Tilt Right)
-Right Joystick: Shoulder (Left and Right) and Elbow (Up and Down)
-DPad: Nothing
-X: Nothing
-Y: Nothing
-A: Nothing
-B: Nothing`
+- Left Bumper: Nothing
+- Right Bumper: Nothing
+- Left Trigger: Intake In
+- Right Trigger: Intake Out
+- Left Joystick: Lift (Up, Down, Tilt Left, and Tilt Right)
+- Right Joystick: Shoulder (Left and Right) and Elbow (Up and Down)
+- DPad: Nothing
+- X: Nothing
+- Y: Nothing
+- A: Nothing
+- B: Nothing`

@@ -14,17 +14,21 @@ public class Intake {
     // TODO: Test if this works or if it can be a DcMotor
     private final DcMotorSimple elbowMotor;
 
+    private final Servo wristServo;
+
     /**
      * Constructor for the Intake subsystem.
      *
      * @param intakeServo The CRServo object representing the intake roller motor.
      * @param clawServo   The Servo object representing the claw servo.
      * @param elbowMotor  The DcMotor object representing the elbow motor.
+     * @param wristServo The servo object representing the claw lift.
      */
-    public Intake(CRServo intakeServo, Servo clawServo, DcMotorSimple elbowMotor) {
+    public Intake(CRServo intakeServo, Servo clawServo, DcMotorSimple elbowMotor, Servo wristServo) {
         this.intakeServo = intakeServo;
         this.clawServo = clawServo;
         this.elbowMotor = elbowMotor;
+        this.wristServo = wristServo;
     }
 
     /**
@@ -71,6 +75,21 @@ public class Intake {
     public void clawClose() {
         clawServo.setPosition(1);
     }
+
+    public void wristExtend(){
+        wristServo.setPosition(1);}
+
+    /**
+     * This would extend the claw outward to score
+     *
+     */
+    public void WristDescend(){
+        wristServo.setPosition(0);}
+
+    /**
+     *
+     * this would tuck away the claw into the robot
+     */
 
     // TODO: Document with Gemini Code Assist
     public void elbowMove(double speed) {

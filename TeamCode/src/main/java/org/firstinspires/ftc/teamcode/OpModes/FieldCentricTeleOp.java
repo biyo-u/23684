@@ -40,6 +40,12 @@ public class FieldCentricTeleOp extends OpMode {
         } else {
             robot.intake.intakeStop();
         }
+        
+        if (gamepad2.x){
+            robot.intake.wristExtend();
+        }else{
+            robot.intake.WristDescend();
+        }
 
         // Lift
         if (gamepad2.left_stick_y > Constants.liftThreshold) {
