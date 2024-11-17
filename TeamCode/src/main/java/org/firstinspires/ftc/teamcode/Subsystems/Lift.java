@@ -10,7 +10,6 @@ import java.util.Locale;
 public class Lift {
     private final DcMotor liftMotorLeft;
     private final DcMotor liftMotorRight;
-    private final DcMotor liftMotorTilt;
     private final DcMotor shoulderMotor;
     private final Servo liftServoTilt;
     private final Servo rightHangServo;
@@ -61,23 +60,13 @@ public class Lift {
      * This method sets the power of the lift motor based on the provided speed.
      * It also ensures that the lift stays within its defined limits using {@link Constants#liftForwardLimit} and {@link Constants#liftBackwardLimit}.
      *
-     * @param speed The desired speed of the lift motor.
+     * @param position The desired position of the lift motor.
      *              Positive values tilt the lift forward,
      *              negative values tilt it backward,
      *              and 0 stops the motor.
      */
-    public void liftTilt(double speed) {
-        if (speed > 0) {
-            if (liftMotorTilt.getCurrentPosition() < Constants.liftForwardLimit) {
-                liftMotorTilt.setPower(speed);
-            }
-        } else if (speed < 0) {
-            if (liftMotorTilt.getCurrentPosition() > Constants.liftBackwardLimit) {
-                liftMotorTilt.setPower(speed);
-            }
-        } else {
-            liftMotorTilt.setPower(0);
-        }
+    public void liftTilt(double position) {
+        liftServoTilt.setPosition(position);
     }
 
     /**
@@ -108,6 +97,7 @@ public class Lift {
         }
     }
 
+    // TODO: Document
     public void hang(double rightHang, double leftHang) {
         rightHangServo.setPosition(rightHang);
         leftHangServo.setPosition(leftHang);
@@ -117,7 +107,7 @@ public class Lift {
         return String.format(Locale.getDefault(), """
                 Lift Motor Left: %d
                 Lift Motor Right: %d
-                Lift Motor Tilt: %d
-                Shoulder Motor: %d""", liftMotorLeft.getCurrentPosition(), liftMotorRight.getCurrentPosition(), liftMotorTilt.getCurrentPosition(), shoulderMotor.getCurrentPosition());
+                Lift Motor Tilt: %f
+                Shoulder Motor: %d""", liftMotorLeft.getCurrentPosition(), liftMotorRight.getCurrentPosition(), liftServoTilt.getPosition(), shoulderMotor.getCurrentPosition());
     }
 }
