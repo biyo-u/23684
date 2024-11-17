@@ -20,7 +20,7 @@ public class FieldCentricTeleOp extends OpMode {
     @Override
     public void loop() {
         // Drive the robot with the gamepad
-        robot.drive.driveMecanumFieldCentric(gamepad1.left_stick_y, gamepad1.left_stick_x, -gamepad1.right_stick_x, robot.compass);
+        robot.drive.driveMecanumFieldCentric(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x, robot.compass);
 
         // Reset IMU for Field Centric
         if (gamepad1.left_bumper) {
@@ -35,9 +35,9 @@ public class FieldCentricTeleOp extends OpMode {
         }
 
         // Intake
-        if (gamepad2.left_trigger > Constants.intakeThreshold) {
+        if (gamepad2.left_trigger > 0.2) {
             robot.intake.intakeIn();
-        } else if (gamepad2.right_trigger > Constants.intakeThreshold) {
+        } else if (gamepad2.right_trigger > 0.2) {
             robot.intake.intakeOut();
         } else {
             robot.intake.intakeStop();
@@ -51,13 +51,7 @@ public class FieldCentricTeleOp extends OpMode {
         }
 
         // Lift
-        if (gamepad2.left_stick_y > Constants.liftThreshold) {
-            robot.lift.liftMove(gamepad2.left_stick_y);
-        } else if (gamepad2.left_stick_y < -Constants.liftThreshold) {
-            robot.lift.liftMove(gamepad2.left_stick_y);
-        } else {
-            robot.lift.liftMove(0);
-        }
+        robot.lift.liftMove(gamepad2.left_stick_y);
 
         // Lift Tilt
         if (gamepad2.left_stick_x > 0.2 || gamepad2.left_stick_x < -0.2) {
@@ -65,22 +59,18 @@ public class FieldCentricTeleOp extends OpMode {
         }
 
         // Shoulder
-        if (gamepad2.right_stick_x > Constants.shoulderThreshold) {
-            robot.lift.shoulderMove(gamepad2.right_stick_x);
-        } else if (gamepad2.right_stick_x < -Constants.shoulderThreshold) {
-            robot.lift.shoulderMove(gamepad2.right_stick_x);
-        } else {
-            robot.lift.shoulderMove(0);
-        }
+        robot.lift.shoulderMove(gamepad2.right_stick_x);
 
         // Elbow
-        if (gamepad2.right_stick_y > Constants.elbowThreshold) {
-            robot.intake.elbowMove(gamepad2.right_stick_y);
-        } else if (gamepad2.right_stick_y < -Constants.elbowThreshold) {
-            robot.intake.elbowMove(gamepad2.right_stick_y);
-        } else {
-            robot.intake.elbowMove(0);
-        }
+        telemetry.addLine("Gamepad 2 Right Stick Y: " + gamepad2.right_stick_y);
+        robot.intake.elbowMove(gamepad2.right_stick_y);
+//        if (gamepad2.right_stick_y > Constants.elbowThreshold) {
+//            robot.intake.elbowMove(gamepad2.right_stick_y);
+//        } else if (gamepad2.right_stick_y < -Constants.elbowThreshold) {
+//            robot.intake.elbowMove(gamepad2.right_stick_y);
+//        } else {
+//            robot.intake.elbowMove(0);
+//        }
 
         // Hang Hooks
         if (gamepad2.dpad_up) {

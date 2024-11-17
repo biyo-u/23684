@@ -21,7 +21,7 @@ public class Diagnostics extends OpMode {
     private Servo wristServo;
     private DcMotor liftMotorLeft;
     private DcMotor liftMotorRight;
-    private DcMotor liftMotorTilt;
+    private Servo liftServoTilt;
     private DcMotor shoulderMotor;
     private Servo first_hang_right;
     private Servo first_hang_left;
@@ -42,7 +42,7 @@ public class Diagnostics extends OpMode {
         DcMotor elbowMotor = hardwareMap.get(DcMotor.class, "elbowMotor");
         DcMotor liftMotorLeft = hardwareMap.get(DcMotor.class, "liftMotorLeft");
         DcMotor liftMotorRight = hardwareMap.get(DcMotor.class, "liftMotorRight");
-        DcMotor liftMotorTilt = hardwareMap.get(DcMotor.class, "liftMotorTilt");
+        Servo liftMotorTilt = hardwareMap.get(Servo.class, "liftServoTilt");
         DcMotor shoulderMotor = hardwareMap.get(DcMotor.class, "shoulderMotor");
         DcMotor frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
         DcMotor frontRight = hardwareMap.get(DcMotor.class, "frontRight");
@@ -70,16 +70,14 @@ public class Diagnostics extends OpMode {
         // LIFT
         this.liftMotorLeft = liftMotorLeft;
         this.liftMotorRight = liftMotorRight;
-        this.liftMotorTilt = liftMotorTilt;
+        this.liftServoTilt = liftMotorTilt;
         this.shoulderMotor = shoulderMotor;
         this.liftMotorRight.setDirection(DcMotorSimple.Direction.REVERSE);
         this.liftMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.liftMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        this.liftMotorTilt.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.shoulderMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.liftMotorLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         this.liftMotorRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        this.liftMotorTilt.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         this.shoulderMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         // INTAKE
         this.intakeServo = intakeServo;
@@ -187,11 +185,11 @@ public class Diagnostics extends OpMode {
 
         // MOTOR TILT TESTING
         if (gamepad1.dpad_left) {
-            liftMotorTilt.setPower(1);
+            liftServoTilt.setPosition(1);
         } else if (gamepad1.dpad_right) {
-            liftMotorTilt.setPower(-1);
+            liftServoTilt.setPosition(-1);
         } else {
-            liftMotorTilt.setPower(0);
+            liftServoTilt.setPosition(0);
         }
 
         // CONFIRM INTAKE FUNCTIONS

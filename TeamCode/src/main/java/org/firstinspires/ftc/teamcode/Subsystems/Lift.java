@@ -50,11 +50,8 @@ public class Lift {
      *              Positive values move the lift up, negative values move it down.
      */
     public void liftMove(double speed) {
-
-        if (liftMotorLeft.getCurrentPosition() < Constants.liftLeftForwardLimit && liftMotorRight.getCurrentPosition() > Constants.liftRightForwardLimit) {
-            liftMotorLeft.setPower(speed);
-            liftMotorRight.setPower(speed);
-        }
+        liftMotorLeft.setPower(speed);
+        liftMotorRight.setPower(speed);
     }
 
     /**
@@ -87,17 +84,18 @@ public class Lift {
      *              and zero stops the motor.
      */
     public void shoulderMove(double speed) {
-        if (speed > 0) {
-            if (shoulderMotor.getCurrentPosition() < Constants.shoulderForwardLimit) {
-                shoulderMotor.setPower(speed);
-            }
-        } else if (speed < 0) {
-            if (shoulderMotor.getCurrentPosition() > Constants.shoulderBackwardLimit) {
-                shoulderMotor.setPower(speed);
-            }
-        } else {
-            shoulderMotor.setPower(0);
-        }
+//        if (speed > 0) {
+//            if (shoulderMotor.getCurrentPosition() < Constants.shoulderForwardLimit) {
+//                shoulderMotor.setPower(speed);
+//            }
+//        } else if (speed < 0) {
+//            if (shoulderMotor.getCurrentPosition() > Constants.shoulderBackwardLimit) {
+//                shoulderMotor.setPower(speed);
+//            }
+//        } else {
+//            shoulderMotor.setPower(0);
+//        }
+        shoulderMotor.setPower(speed);
     }
 
     // TODO: Document
