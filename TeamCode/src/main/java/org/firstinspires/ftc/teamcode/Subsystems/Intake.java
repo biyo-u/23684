@@ -76,7 +76,8 @@ public class Intake {
 
     // TODO: Document
     public void wristUp() {
-        wristServo.setPosition(1);}
+        wristServo.setPosition(1);
+    }
 
     // TODO: Document
     public void wristDown() {

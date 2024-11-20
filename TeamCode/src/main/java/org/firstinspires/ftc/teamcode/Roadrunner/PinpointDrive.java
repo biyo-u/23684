@@ -4,6 +4,7 @@ package org.firstinspires.ftc.teamcode.Roadrunner;
 import androidx.annotation.NonNull;
 
 import com.acmerobotics.dashboard.canvas.Canvas;
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.AccelConstraint;
 import com.acmerobotics.roadrunner.Action;
@@ -70,6 +71,7 @@ import java.util.List;
  * Portions of this code made and released under the MIT License by Gobilda (Base 10 Assets, LLC)
  * Unless otherwise noted, comments are from Gobilda
  */
+@Config
 public class PinpointDrive {
     public static Params PARAMS = new Params();
     public final MecanumKinematics kinematics = new MecanumKinematics(
@@ -107,10 +109,10 @@ public class PinpointDrive {
 
         // TODO: make sure your config has motors with these names (or change them)
         //   see https://ftc-docs.firstinspires.org/en/latest/hardware_and_software_configuration/configuring/index.html
-        leftFront = hardwareMap.get(DcMotorEx.class, "front_left");
-        leftBack = hardwareMap.get(DcMotorEx.class, "rear_left");
-        rightBack = hardwareMap.get(DcMotorEx.class, "rear_right");
-        rightFront = hardwareMap.get(DcMotorEx.class, "front_right");
+        leftFront = hardwareMap.get(DcMotorEx.class, "frontLeft");
+        leftBack = hardwareMap.get(DcMotorEx.class, "rearLeft");
+        rightBack = hardwareMap.get(DcMotorEx.class, "rearRight");
+        rightFront = hardwareMap.get(DcMotorEx.class, "frontRight");
 
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -119,7 +121,7 @@ public class PinpointDrive {
 
         // TODO: reverse motor directions if needed
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightFront.setDirection(DcMotorSimple.Direction.FORWARD);
         leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
         rightBack.setDirection(DcMotorSimple.Direction.FORWARD);
 
@@ -133,7 +135,7 @@ public class PinpointDrive {
         localizer = new DriveLocalizer();
 
         FlightRecorder.write("PINPOINT_PARAMS", PARAMS);
-        pinpoint = hardwareMap.get(GoBildaPinpointDriverRR.class, "pinpoint");
+        pinpoint = hardwareMap.get(GoBildaPinpointDriverRR.class, "odometry");
 
         // RR localizer note: don't love this conversion (change driver?)
         pinpoint.setOffsets(DistanceUnit.MM.fromInches(PARAMS.xOffset), DistanceUnit.MM.fromInches(PARAMS.yOffset));
@@ -250,8 +252,8 @@ public class PinpointDrive {
          */
         //These are tuned for 3110-0002-0001 Product Insight #1
         // RR localizer note: These units are inches, presets are converted from mm (which is why they are inexact)
-        public double xOffset = -3.3071;
-        public double yOffset = -6.6142;
+        public double xOffset = -6.811023622;
+        public double yOffset = -6.1417322835;
 
         /*
         Set the kind of pods used by your robot. If you're using goBILDA odometry pods, select either
@@ -263,7 +265,7 @@ public class PinpointDrive {
         To get this value from inPerTick, first convert the value to millimeters (multiply by 25.4)
         and then take its inverse (one over the value)
          */
-        public double encoderResolution = GoBildaPinpointDriverRR.goBILDA_4_BAR_POD;
+        public double encoderResolution = GoBildaPinpointDriverRR.goBILDA_SWINGARM_POD;
 
         /*
         Set the direction that each of the two odometry pods count. The X (forward) pod should
@@ -271,7 +273,7 @@ public class PinpointDrive {
         you move the robot to the left.
          */
         public GoBildaPinpointDriver.EncoderDirection xDirection = GoBildaPinpointDriver.EncoderDirection.REVERSED;
-        public GoBildaPinpointDriver.EncoderDirection yDirection = GoBildaPinpointDriver.EncoderDirection.REVERSED;
+        public GoBildaPinpointDriver.EncoderDirection yDirection = GoBildaPinpointDriver.EncoderDirection.FORWARD;
 
         // IMU orientation
         public RevHubOrientationOnRobot.LogoFacingDirection logoFacingDirection =
@@ -282,12 +284,12 @@ public class PinpointDrive {
         // drive model parameters
         public double inPerTick = 1; // SparkFun OTOS Note: you can probably leave this at 1
         public double lateralInPerTick = inPerTick;
-        public double trackWidthTicks = 0;
+        public double trackWidthTicks = 15.48663991290818;
 
         // feedforward parameters (in tick units)
-        public double kS = 0;
-        public double kV = 0;
-        public double kA = 0;
+        public double kS = 1.183601153366289;
+        public double kV = 0.18499688085766125;
+        public double kA = 0.023;
 
         // path profile parameters (in inches)
         public double maxWheelVel = 50;
