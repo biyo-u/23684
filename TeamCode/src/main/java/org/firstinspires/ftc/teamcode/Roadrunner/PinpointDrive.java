@@ -289,7 +289,7 @@ public class PinpointDrive {
         // feedforward parameters (in tick units)
         public double kS = 1.183601153366289;
         public double kV = 0.18499688085766125;
-        public double kA = 0.023;
+        public double kA = -0.75;
 
         // path profile parameters (in inches)
         public double maxWheelVel = 50;
