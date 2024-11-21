@@ -98,6 +98,12 @@ public class PinpointDrive {
     public Pose2d pose;
     private Pose2d lastPinpointPose = pose;
 
+    // IMU orientation
+    public RevHubOrientationOnRobot.LogoFacingDirection logoFacingDirection =
+            RevHubOrientationOnRobot.LogoFacingDirection.RIGHT;
+    public RevHubOrientationOnRobot.UsbFacingDirection usbFacingDirection =
+            RevHubOrientationOnRobot.UsbFacingDirection.UP;
+
     public PinpointDrive(HardwareMap hardwareMap, Pose2d pose) {
         this.pose = pose;
 
@@ -128,11 +134,11 @@ public class PinpointDrive {
         // TODO: make sure your config has an IMU with this name (can be BNO or BHI)
         //   see https://ftc-docs.firstinspires.org/en/latest/hardware_and_software_configuration/configuring/index.html
         lazyImu = new LazyImu(hardwareMap, "imu", new RevHubOrientationOnRobot(
-                PARAMS.logoFacingDirection, PARAMS.usbFacingDirection));
+                    logoFacingDirection, usbFacingDirection));
 
         voltageSensor = hardwareMap.voltageSensor.iterator().next();
 
-        localizer = new DriveLocalizer();
+        localizer = new GoBildaLocalizer(hardwareMap, new Pose2d(0, 0, 0));
 
         FlightRecorder.write("PINPOINT_PARAMS", PARAMS);
         pinpoint = hardwareMap.get(GoBildaPinpointDriverRR.class, "odometry");
@@ -275,11 +281,6 @@ public class PinpointDrive {
         public GoBildaPinpointDriver.EncoderDirection xDirection = GoBildaPinpointDriver.EncoderDirection.REVERSED;
         public GoBildaPinpointDriver.EncoderDirection yDirection = GoBildaPinpointDriver.EncoderDirection.FORWARD;
 
-        // IMU orientation
-        public RevHubOrientationOnRobot.LogoFacingDirection logoFacingDirection =
-                RevHubOrientationOnRobot.LogoFacingDirection.RIGHT;
-        public RevHubOrientationOnRobot.UsbFacingDirection usbFacingDirection =
-                RevHubOrientationOnRobot.UsbFacingDirection.UP;
 
         // drive model parameters
         public double inPerTick = 1; // SparkFun OTOS Note: you can probably leave this at 1
