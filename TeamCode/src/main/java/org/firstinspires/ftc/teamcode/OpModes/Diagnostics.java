@@ -7,7 +7,10 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.Robot;
+import org.firstinspires.ftc.teamcode.Subsystems.Odometry;
 
 /*
 THIS OPMODE IS FOR DIAGNOSTIC TESTING OF ALL HARDWARE INDEPENDENT OF SUBSYSTEMS. DO NOT DELETE THIS.
@@ -30,8 +33,12 @@ public class Diagnostics extends OpMode {
     private DcMotor rearLeft;
     private DcMotor rearRight;
 
+    private Odometry odometry;
+    private Robot robot;
+
     @Override
     public void init() {
+        robot = new Robot(hardwareMap);
 
         // Private Devices
         CRServo intakeServo = hardwareMap.get(CRServo.class, "intakeServo");
@@ -241,5 +248,11 @@ public class Diagnostics extends OpMode {
             first_hang_left.setPosition(0.1);
             first_hang_right.setPosition(0.7);
         }
+
+        telemetry.addLine(robot.odometry.getTelemetry());
+        telemetry.addData("Heading", robot.compass.getHeading());
+        telemetry.addLine(robot.odometry.rawXTelemetry());
+        telemetry.addLine(robot.odometry.rawYTelemetry());
+        telemetry.addLine(robot.odometry.rawHeadingTelemetry());
     }
 }

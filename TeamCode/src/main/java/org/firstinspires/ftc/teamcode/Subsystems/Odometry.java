@@ -125,4 +125,27 @@ public class Odometry {
         Pose2D position = odometry.getPosition();
         return String.format(Locale.getDefault(), "X: %.2f, Y: %.2f, Heading: %.2f", position.getX(DistanceUnit.INCH), position.getY(DistanceUnit.INCH), position.getHeading(AngleUnit.DEGREES));
     }
+
+    /**
+     * Gets the current X telemetry data from the robot's odometry.
+     *
+     * @return The robot's
+     */
+    public String rawXTelemetry() {
+        Pose2D position = odometry.getPosition();
+        return String.format(Locale.getDefault(), "X: %2.f", position.getX(DistanceUnit.INCH));
+    }
+    /**
+     * Gets the current X telemetry data from the robot's odometry.
+     *
+     * @returns Y telemetry values
+     */
+    public String rawYTelemetry() {
+        Pose2D position = odometry.getPosition();
+        return String.format(Locale.getDefault(), "Y: %2.f", position.getY(DistanceUnit.INCH));
+    }
+    public String rawHeadingTelemetry() {
+        Pose2D position = odometry.getPosition();
+        return String.format(Locale.getDefault(), "Heading: %2.f", position.getHeading(AngleUnit.DEGREES));
+    }
 }
