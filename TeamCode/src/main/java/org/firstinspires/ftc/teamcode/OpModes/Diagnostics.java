@@ -24,7 +24,8 @@ public class Diagnostics extends OpMode {
     private Servo wristServo;
     private DcMotor liftMotorLeft;
     private DcMotor liftMotorRight;
-    private Servo liftServoTilt;
+    private Servo liftServoTiltRight;
+    private Servo liftServoTiltLeft;
     private DcMotor shoulderMotor;
     private Servo first_hang_right;
     private Servo first_hang_left;
@@ -32,7 +33,6 @@ public class Diagnostics extends OpMode {
     private DcMotor frontRight;
     private DcMotor rearLeft;
     private DcMotor rearRight;
-
     private Odometry odometry;
     private Robot robot;
 
@@ -49,7 +49,8 @@ public class Diagnostics extends OpMode {
         DcMotor elbowMotor = hardwareMap.get(DcMotor.class, "elbowMotor");
         DcMotor liftMotorLeft = hardwareMap.get(DcMotor.class, "liftMotorLeft");
         DcMotor liftMotorRight = hardwareMap.get(DcMotor.class, "liftMotorRight");
-        Servo liftMotorTilt = hardwareMap.get(Servo.class, "liftServoTilt");
+        Servo liftServoTiltRight = hardwareMap.get(Servo.class, "liftServoTiltRight");
+        Servo liftServoTiltLeft = hardwareMap.get(Servo.class, "liftServoTiltLeft");
         DcMotor shoulderMotor = hardwareMap.get(DcMotor.class, "shoulderMotor");
         DcMotor frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
         DcMotor frontRight = hardwareMap.get(DcMotor.class, "frontRight");
@@ -77,7 +78,8 @@ public class Diagnostics extends OpMode {
         // LIFT
         this.liftMotorLeft = liftMotorLeft;
         this.liftMotorRight = liftMotorRight;
-        this.liftServoTilt = liftMotorTilt;
+        this.liftServoTiltLeft = liftServoTiltLeft;
+        this.liftServoTiltRight = liftServoTiltRight;
         this.shoulderMotor = shoulderMotor;
         this.liftMotorRight.setDirection(DcMotorSimple.Direction.REVERSE);
         this.liftMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -107,8 +109,8 @@ public class Diagnostics extends OpMode {
         telemetry.addData("B Key", "Rear Right Motor");
         telemetry.addData("D Pad Up", "Both Lift Motors Up");
         telemetry.addData("D Pad Down", "Both Lift Motors Down");
-        telemetry.addData("D Pad Left", "Lift Tilt +1 power");
-        telemetry.addData("D Pad Right", "Lift Tilt -1 power");
+        telemetry.addData("D Pad Left", "Both Lift Tilt +1 power");
+        telemetry.addData("D Pad Right", "Both Lift Tilt -1 power");
         telemetry.addData("Right Bumper", "Intake Forward");
         telemetry.addData("Left Bumper", "Intake Backward");
 
@@ -192,11 +194,14 @@ public class Diagnostics extends OpMode {
 
         // MOTOR TILT TESTING
         if (gamepad1.dpad_left) {
-            liftServoTilt.setPosition(1);
+            liftServoTiltRight.setPosition(1);
+            liftServoTiltLeft.setPosition(1);
         } else if (gamepad1.dpad_right) {
-            liftServoTilt.setPosition(-1);
+            liftServoTiltRight.setPosition(-1);
+            liftServoTiltLeft.setPosition(-1);
         } else {
-            liftServoTilt.setPosition(0);
+            liftServoTiltRight.setPosition(0);
+            liftServoTiltLeft.setPosition(0);
         }
 
         // CONFIRM INTAKE FUNCTIONS
