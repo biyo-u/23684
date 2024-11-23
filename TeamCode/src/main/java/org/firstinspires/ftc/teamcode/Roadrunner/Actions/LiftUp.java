@@ -20,14 +20,14 @@ public class LiftUp implements Action {
     public boolean run(@NonNull TelemetryPacket telemetryPacket) {
 
         if (!initialised) {
-            robot.lift.liftMove(1);
+            robot.lift.liftMove(-1);
             initialised = true;
         }
 
         double pos = robot.lift.getLiftPosition();
 
         telemetryPacket.put("liftPos", pos);
-        if (pos < -2000) {
+        if (pos > -4000) {
             return true;
         } else {
             robot.lift.liftMove(0);
