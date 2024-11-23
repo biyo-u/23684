@@ -138,7 +138,7 @@ public class PinpointDrive {
 
         voltageSensor = hardwareMap.voltageSensor.iterator().next();
 
-        localizer = new GoBildaLocalizer(hardwareMap, new Pose2d(0, 0, 0));
+        localizer = new DriveLocalizer();
 
         FlightRecorder.write("PINPOINT_PARAMS", PARAMS);
         pinpoint = hardwareMap.get(GoBildaPinpointDriverRR.class, "odometry");
