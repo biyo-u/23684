@@ -54,9 +54,9 @@ public class FieldCentricTeleOp extends OpMode {
         robot.lift.liftMove(gamepad2.left_stick_y);
 
         // Lift Tilt
-        if (gamepad2.left_stick_x == 1){
+        if (gamepad2.left_stick_y == 1){
             robot.lift.liftLeft();
-        } else if (gamepad2.left_stick_x == -1){
+        } else if (gamepad2.left_stick_y == -1){
             robot.lift.liftRight();
         }
 
