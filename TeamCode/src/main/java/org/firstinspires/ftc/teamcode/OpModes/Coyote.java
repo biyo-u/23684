@@ -28,6 +28,7 @@ import org.firstinspires.ftc.teamcode.Roadrunner.Actions.ShoulderDown;
 import org.firstinspires.ftc.teamcode.Roadrunner.Actions.ShoulderUp;
 import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.Roadrunner.PinpointDrive;
+import org.firstinspires.ftc.teamcode.Utilities;
 
 
 @Autonomous //(name = "BlueAuto", group = Constants.GroupNames.Autonomous, preselectTeleOp = "FieldCentricTeleOp")
@@ -83,11 +84,10 @@ public class Coyote extends LinearOpMode {
         int visionOutputPosition = 1;
 
         TrajectoryActionBuilder tab1 = drive.actionBuilder(initialPose)
-                        .lineToX(24);
+                        .splineTo(new Vector2d(22, 0), Utilities.degreesToRadians(0));
         TrajectoryActionBuilder tab2 = drive.actionBuilder(initialPose)
-                        .lineToY(-10)
-                        .splineTo(new Vector2d(0, -30), Math.PI/2)
-                        .lineToY(31);
+                        .splineTo(new Vector2d(22, -10), Utilities.degreesToRadians(0))
+                        .splineTo(new Vector2d(48, -30), Utilities.degreesToRadians(0));
         TrajectoryActionBuilder tab3 = drive.actionBuilder(initialPose)
                         .splineTo(new Vector2d(38, 30), 0);
         TrajectoryActionBuilder tab4 = drive.actionBuilder(initialPose)
