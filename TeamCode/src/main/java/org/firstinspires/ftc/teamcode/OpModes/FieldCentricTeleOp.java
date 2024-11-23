@@ -57,7 +57,7 @@ public class FieldCentricTeleOp extends OpMode {
         if (gamepad2.left_stick_x == 1){
             robot.lift.liftLeft();
         } else if (gamepad2.left_stick_x == -1){
-            robot.lift.liftLeft();
+            robot.lift.liftRight();
         }
 
         // Shoulder
