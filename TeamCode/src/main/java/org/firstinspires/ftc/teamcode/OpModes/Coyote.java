@@ -13,6 +13,19 @@ import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.Roadrunner.Actions.CloseClaw;
+import org.firstinspires.ftc.teamcode.Roadrunner.Actions.ElbowIn;
+import org.firstinspires.ftc.teamcode.Roadrunner.Actions.ElbowOut;
+import org.firstinspires.ftc.teamcode.Roadrunner.Actions.IntakeIn;
+import org.firstinspires.ftc.teamcode.Roadrunner.Actions.IntakeOut;
+import org.firstinspires.ftc.teamcode.Roadrunner.Actions.IntakeStop;
+import org.firstinspires.ftc.teamcode.Roadrunner.Actions.LiftDown;
+import org.firstinspires.ftc.teamcode.Roadrunner.Actions.LiftUp;
+import org.firstinspires.ftc.teamcode.Roadrunner.Actions.LowerWrist;
+import org.firstinspires.ftc.teamcode.Roadrunner.Actions.OpenClaw;
+import org.firstinspires.ftc.teamcode.Roadrunner.Actions.RaiseWrist;
+import org.firstinspires.ftc.teamcode.Roadrunner.Actions.ShoulderDown;
+import org.firstinspires.ftc.teamcode.Roadrunner.Actions.ShoulderUp;
 import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.Roadrunner.PinpointDrive;
 
@@ -22,235 +35,48 @@ public class Coyote extends LinearOpMode {
 
     private Robot robot;
 
-    public class LiftUp implements Action {
-
-        private boolean initialised = false;
-
-        @Override
-        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-
-            if (!initialised) {
-                robot.lift.liftMove(1);
-                initialised = true;
-            }
-
-            double pos = robot.lift.getLiftPosition();
-
-            telemetryPacket.put("liftPos", pos);
-            if (pos < -2000) {
-                return true;
-            } else {
-                robot.lift.liftMove(0);
-                return false;
-            }
-        }
-    }
     public Action LiftUp() {
-        return new LiftUp();
-    }
-
-    public class LiftDown implements Action {
-
-        private boolean initialised = false;
-
-        @Override
-        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-
-            if (!initialised) {
-                robot.lift.liftMove(-1);
-                initialised = true;
-            }
-
-            double pos = robot.lift.getLiftPosition();
-
-            telemetryPacket.put("liftPos", pos);
-            if (pos > 200) {
-                return true;
-            } else {
-                robot.lift.liftMove(0);
-                return false;
-            }
-        }
+        return new LiftUp(robot);
     }
     public Action LiftDown() {
-        return new LiftDown();
+        return new LiftDown(robot);
     }
-
-    public class CloseClaw implements Action {
-        @Override
-        public boolean run(@NonNull TelemetryPacket packet) {
-            robot.intake.clawClose();
-            return false;
-        }
+    public Action CloseClaw() {
+        return new CloseClaw(robot);
     }
-    public Action closeClaw() {
-        return new CloseClaw();
+    public Action OpenClaw() {
+        return new OpenClaw(robot);
     }
-
-    public class OpenClaw implements Action {
-        @Override
-        public boolean run(@NonNull TelemetryPacket packet) {
-            robot.intake.clawOpen();
-            return false;
-        }
+    public Action RaiseWrist() {
+        return new RaiseWrist(robot);
     }
-    public Action openClaw() {
-        return new OpenClaw();
+    public Action LowerWrist() {
+        return new LowerWrist(robot);
     }
-
-    public class raiseWrist implements Action {
-        @Override
-        public boolean run(@NonNull TelemetryPacket packet) {
-            robot.intake.wristUp();
-            return false;
-        }
+    public Action IntakeIn() {
+        return new IntakeIn(robot);
     }
-    public Action raiseWrist() {
-        return new raiseWrist();
+    public Action IntakeOut() {
+        return new IntakeOut(robot);
     }
-
-    public class lowerWrist implements Action {
-        @Override
-        public boolean run(@NonNull TelemetryPacket packet) {
-            robot.intake.wristDown();
-            return false;
-        }
+    public Action IntakeStop() {
+        return new IntakeStop(robot);
     }
-    public Action lowerWrist() {
-        return new lowerWrist();
+    public Action ShoulderUp() {
+        return new ShoulderUp(robot);
     }
-
-    public class intakeIn implements Action {
-        @Override
-        public boolean run(@NonNull TelemetryPacket packet) {
-            robot.intake.intakeIn();
-            return false;
-        }
+    public Action ShoulderDown() {
+        return new ShoulderDown(robot);
     }
-    public Action intakeIn() {
-        return new intakeIn();
+    public Action ElbowOut() {
+        return new ElbowOut(robot);
     }
-
-    public class intakeOut implements Action {
-        @Override
-        public boolean run(@NonNull TelemetryPacket packet) {
-            robot.intake.intakeOut();
-            return false;
-        }
-    }
-    public Action intakeOut() {
-        return new intakeOut();
-    }
-
-    public class intakeStop implements Action {
-        @Override
-        public boolean run(@NonNull TelemetryPacket packet) {
-            robot.intake.intakeStop();
-            return false;
-        }
-    }
-    public Action intakeStop() {
-        return new intakeStop();
-    }
-
-    public class shoulderUp implements Action {
-        private boolean initialised = false;
-        @Override
-        public boolean run(@NonNull TelemetryPacket packet) {
-            if (!initialised) {
-                robot.lift.shoulderMove(1);
-                initialised = true;
-            }
-
-            double pos = robot.lift.getShoulderPosition();
-
-            packet.put("shoulderPos", pos);
-            if (pos > 200) {
-                return true;
-            } else {
-                robot.lift.shoulderMove(0);
-                return false;
-            }
-        }
-    }
-    public Action shoulderUp() {
-        return new shoulderUp();
-    }
-
-    public class shoulderDown implements Action {
-        private boolean initialised = false;
-        @Override
-        public boolean run(@NonNull TelemetryPacket packet) {
-            if (!initialised) {
-                robot.lift.shoulderMove(-1);
-                initialised = true;
-            }
-
-            double pos = robot.lift.getShoulderPosition();
-
-            packet.put("shoulderPos", pos);
-            if (pos < 200) {
-                return true;
-            } else {
-                robot.lift.shoulderMove(0);
-                return false;
-            }
-        }
-    }
-    public Action shoulderDown() {
-        return new shoulderDown();
-    }
-
-    public class elbowOut implements Action {
-        private boolean initialised = false;
-        @Override
-        public boolean run(@NonNull TelemetryPacket packet) {
-            if (!initialised) {
-                robot.intake.elbowMove(1);
-                initialised = true;
-            }
-
-            double pos = robot.intake.getElbowPosition();
-
-            packet.put("shoulderPos", pos);
-            if (pos > 200) {
-                return true;
-            } else {
-                robot.lift.shoulderMove(0);
-                return false;
-            }
-        }
-    }
-    public Action elbowOut() {
-        return new elbowOut();
-    }
-
-    public class elbowIn implements Action {
-        private boolean initialised = false;
-        @Override
-        public boolean run(@NonNull TelemetryPacket packet) {
-            if (!initialised) {
-                robot.lift.shoulderMove(-1);
-                initialised = true;
-            }
-
-            double pos = robot.intake.getElbowPosition();
-
-            packet.put("shoulderPos", pos);
-            if (pos < 200) {
-                return true;
-            } else {
-                robot.lift.shoulderMove(0);
-                return false;
-            }
-        }
-    }
-    public Action elbowIn() {
-        return new elbowIn();
+    public Action ElbowIn() {
+        return new ElbowIn(robot);
     }
 
     @Override
-    public void runOpMode () throws InterruptedException {
+    public void runOpMode() throws InterruptedException {
         Pose2d initialPose = new Pose2d(0, 0, Math.toRadians(0));
         PinpointDrive drive = new PinpointDrive(hardwareMap, initialPose);
 
@@ -263,7 +89,9 @@ public class Coyote extends LinearOpMode {
                         .splineTo(new Vector2d(0, -30), Math.PI/2)
                         .lineToY(31);
         TrajectoryActionBuilder tab3 = drive.actionBuilder(initialPose)
-                        .splineToLinearHeading(new Pose2d(54, 56, 45), Math.PI / 2);
+                        .splineTo(new Vector2d(38, 30), 0);
+        TrajectoryActionBuilder tab4 = drive.actionBuilder(initialPose)
+                        .splineToLinearHeading(new Pose2d(54, 56, 45),0);
 
         Actions.runBlocking(
                 new SequentialAction(
@@ -271,15 +99,15 @@ public class Coyote extends LinearOpMode {
                         tab1.build(),// move forward to chamber
                         LiftDown(), //pull specimen onto red high chamber
                         tab2.build(), //back away and move to first y sample
-                        intakeIn(), // use intake (need to add that) to collect yellow sample
-                        shoulderUp(),
-                        elbowOut(),
+                        IntakeIn(), // use intake (need to add that) to collect yellow sample
+                        ShoulderUp(),
+                        ElbowOut(),
                         LiftUp(), // raise to high basket
-                        intakeOut(),// put in red high basket
+                        IntakeOut(),// put in red high basket
                         LiftDown(),// lower lift
                         tab3.build(),// return to second y sample
-                        elbowOut(),// collect 2nd y sample
-                        intakeIn()
+                        ElbowOut(),// collect 2nd y sample
+                        IntakeIn()
                         // raise to high basket
                         // put in red high basket
                         // lower lift
