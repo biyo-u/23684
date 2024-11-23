@@ -92,30 +92,35 @@ public class Coyote extends LinearOpMode {
         TrajectoryActionBuilder tab4 = drive.actionBuilder(initialPose)
                         .splineToLinearHeading(new Pose2d(54, 56, 45),0);
 
+//        Actions.runBlocking(
+//                new SequentialAction(
+//                        LiftUp(),
+//                        tab1.build(),// move forward to chamber
+//                        LiftDown(), //pull specimen onto red high chamber
+//                        tab2.build(), //back away and move to first y sample
+//                        IntakeIn(), // use intake (need to add that) to collect yellow sample
+//                        ShoulderUp(),
+//                        ElbowOut(),
+//                        LiftUp(), // raise to high basket
+//                        IntakeOut(),// put in red high basket
+//                        LiftDown(),// lower lift
+//                        tab3.build(),// return to second y sample
+//                        ElbowOut(),// collect 2nd y sample
+//                        IntakeIn()
+//                        // raise to high basket
+//                        // put in red high basket
+//                        // lower lift
+//                        // return to third yellow sample
+//                        // collect 3rd y sample
+//                        // raise to high basket
+//                        // score in red high basket
+//                        // lower lift
+//                        // move and park in observation zone
+//                );
+//        );
+
         Actions.runBlocking(
                 new SequentialAction(
-                        LiftUp(),
-                        tab1.build(),// move forward to chamber
-                        LiftDown(), //pull specimen onto red high chamber
-                        tab2.build(), //back away and move to first y sample
-                        IntakeIn(), // use intake (need to add that) to collect yellow sample
-                        ShoulderUp(),
-                        ElbowOut(),
-                        LiftUp(), // raise to high basket
-                        IntakeOut(),// put in red high basket
-                        LiftDown(),// lower lift
-                        tab3.build(),// return to second y sample
-                        ElbowOut(),// collect 2nd y sample
-                        IntakeIn()
-                        // raise to high basket
-                        // put in red high basket
-                        // lower lift
-                        // return to third yellow sample
-                        // collect 3rd y sample
-                        // raise to high basket
-                        // score in red high basket
-                        // lower lift
-                        // move and park in observation zone
                         LiftUp()
                 )
         );
