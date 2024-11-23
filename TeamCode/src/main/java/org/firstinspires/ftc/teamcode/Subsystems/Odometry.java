@@ -78,7 +78,7 @@ public class Odometry {
     public void updateWithWeight(double x, double y) {
         double currentX = odometry.getPosX();
         double currentY = odometry.getPosY();
-        double currentHeading = compass.getHeading(AngleUnit.DEGREES);
+        double currentHeading = compass.getHeading();
 
         odometry.setPosition(new Pose2D(DistanceUnit.INCH, (currentX * (1 - Constants.odometryWeight)) + (x * Constants.odometryWeight), (currentY * (1 - Constants.odometryWeight)) + (y * Constants.odometryWeight), AngleUnit.DEGREES, currentHeading));
     }
@@ -129,16 +129,16 @@ public class Odometry {
     /**
      * Gets the current X telemetry data from the robot's odometry.
      *
-     * @return The robot's
+     * @return The robot's X telemetry values
      */
     public double rawXTelemetry() {
         Pose2D position = odometry.getPosition();
         return position.getX(DistanceUnit.INCH);
     }
     /**
-     * Gets the current X telemetry data from the robot's odometry.
+     * Gets the current Y telemetry data from the robot's odometry.
      *
-     * @return Y telemetry values
+     * @return The robot's Y telemetry values
      */
     public double rawYTelemetry() {
         Pose2D position = odometry.getPosition();
@@ -147,7 +147,7 @@ public class Odometry {
     /**
      * Gets the current heading telemetry data from the robot's odometry.
      *
-     * @return Heading telemetry values
+     * @return The robot's Heading telemetry values
      */
     public double rawHeadingTelemetry() {
         Pose2D position = odometry.getPosition();

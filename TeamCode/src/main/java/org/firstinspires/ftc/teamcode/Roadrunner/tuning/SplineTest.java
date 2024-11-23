@@ -5,6 +5,7 @@ import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.onbotjava.handlers.file.NewFile;
 import org.firstinspires.ftc.teamcode.Roadrunner.PinpointDrive;
 
 public final class SplineTest extends LinearOpMode {
@@ -18,9 +19,8 @@ public final class SplineTest extends LinearOpMode {
 
         Actions.runBlocking(
                 drive.actionBuilder(beginPose)
-                        .lineToX(24)
-                        .turnTo(Math.PI/2)
-                        .lineToY(24)
+                        .splineTo(new Vector2d(24, 24), Math.PI/2)
+//                        .splineTo(new Vector2d(0,48), Math.PI)
                         .build());
     }
 }

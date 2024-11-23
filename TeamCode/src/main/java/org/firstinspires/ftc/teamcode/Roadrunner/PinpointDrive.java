@@ -258,8 +258,8 @@ public class PinpointDrive {
          */
         //These are tuned for 3110-0002-0001 Product Insight #1
         // RR localizer note: These units are inches, presets are converted from mm (which is why they are inexact)
-        public double xOffset = -6.811023622;
-        public double yOffset = -6.1417322835;
+        public double xOffset = -6.14;
+        public double yOffset = 6.81;
 
         /*
         Set the kind of pods used by your robot. If you're using goBILDA odometry pods, select either
@@ -352,12 +352,12 @@ public class PinpointDrive {
             PositionVelocityPair rightBackPosVel = rightBack.getPositionAndVelocity();
             PositionVelocityPair rightFrontPosVel = rightFront.getPositionAndVelocity();
 
-            YawPitchRollAngles angles = imu.getRobotYawPitchRollAngles();
+//            Rotation2d angles = pinpoint.getPositionRR().heading;
+            Rotation2d heading = new Rotation2d(Math.cos(pinpoint.getHeading()), Math.sin(pinpoint.getHeading()));
 
             FlightRecorder.write("MECANUM_LOCALIZER_INPUTS", new MecanumLocalizerInputsMessage(
-                    leftFrontPosVel, leftBackPosVel, rightBackPosVel, rightFrontPosVel, angles));
+                    leftFrontPosVel, leftBackPosVel, rightBackPosVel, rightFrontPosVel, pinpoint));
 
-            Rotation2d heading = Rotation2d.exp(angles.getYaw(AngleUnit.RADIANS));
 
             if (!initialized) {
                 initialized = true;
