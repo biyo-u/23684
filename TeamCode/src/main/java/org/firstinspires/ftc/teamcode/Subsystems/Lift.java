@@ -75,10 +75,12 @@ public class Lift {
 
     public void liftLeft(){
         liftServoTiltLeft.setPower(0);
+        liftServoTiltRight.setPower(0);
     }
 
     public void liftRight(){
         liftServoTiltLeft.setPower(1);
+        liftServoTiltRight.setPower(1);
     }
 
     /**

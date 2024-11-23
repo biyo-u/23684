@@ -53,10 +53,15 @@ public class FieldCentricTeleOp extends OpMode {
         // Lift
         robot.lift.liftMove(gamepad2.left_stick_y);
 
+//        robot.lift.liftLeft();
+
         // Lift Tilt
-        if (gamepad2.left_stick_y == 1){
+        telemetry.addLine(String.valueOf(gamepad2.left_stick_x));
+        if (gamepad2.left_stick_x > 0.8){
+            telemetry.addLine("Going left");
             robot.lift.liftLeft();
-        } else if (gamepad2.left_stick_y == -1){
+        } else if (gamepad2.left_stick_x < -0.8){
+            telemetry.addLine("Going right");
             robot.lift.liftRight();
         }
 

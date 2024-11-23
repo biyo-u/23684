@@ -18,9 +18,9 @@ public final class SplineTest extends LinearOpMode {
 
         Actions.runBlocking(
                 drive.actionBuilder(beginPose)
-                        .lineToX(24)
+//                        .lineToX(24)
                         .turn(Math.PI/2)
-                        .lineToY(24)
+//                        .lineToY(24)
                         .build());
     }
 }
