@@ -24,8 +24,8 @@ public class Diagnostics extends OpMode {
     private Servo wristServo;
     private DcMotor liftMotorLeft;
     private DcMotor liftMotorRight;
-    private Servo liftServoTiltRight;
-    private Servo liftServoTiltLeft;
+    private CRServo liftServoTiltRight;
+    private CRServo liftServoTiltLeft;
     private DcMotor shoulderMotor;
     private Servo first_hang_right;
     private Servo first_hang_left;
@@ -49,8 +49,8 @@ public class Diagnostics extends OpMode {
         DcMotor elbowMotor = hardwareMap.get(DcMotor.class, "elbowMotor");
         DcMotor liftMotorLeft = hardwareMap.get(DcMotor.class, "liftMotorLeft");
         DcMotor liftMotorRight = hardwareMap.get(DcMotor.class, "liftMotorRight");
-        Servo liftServoTiltRight = hardwareMap.get(Servo.class, "liftServoTiltRight");
-        Servo liftServoTiltLeft = hardwareMap.get(Servo.class, "liftServoTiltLeft");
+        CRServo liftServoTiltRight = hardwareMap.get(CRServo.class, "liftServoTiltRight");
+        CRServo liftServoTiltLeft = hardwareMap.get(CRServo.class, "liftServoTiltLeft");
         DcMotor shoulderMotor = hardwareMap.get(DcMotor.class, "shoulderMotor");
         DcMotor frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
         DcMotor frontRight = hardwareMap.get(DcMotor.class, "frontRight");
@@ -194,14 +194,14 @@ public class Diagnostics extends OpMode {
 
         // MOTOR TILT TESTING
         if (gamepad1.dpad_left) {
-            liftServoTiltRight.setPosition(1);
-            liftServoTiltLeft.setPosition(1);
+            liftServoTiltRight.setPower(1);
+            liftServoTiltLeft.setPower(1);
         } else if (gamepad1.dpad_right) {
-            liftServoTiltRight.setPosition(-1);
-            liftServoTiltLeft.setPosition(-1);
+            liftServoTiltRight.setPower(-1);
+            liftServoTiltLeft.setPower(-1);
         } else {
-            liftServoTiltRight.setPosition(0);
-            liftServoTiltLeft.setPosition(0);
+            liftServoTiltRight.setPower(0);
+            liftServoTiltLeft.setPower(0);
         }
 
         // CONFIRM INTAKE FUNCTIONS

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -11,8 +12,8 @@ public class Lift {
     private final DcMotor liftMotorLeft;
     private final DcMotor liftMotorRight;
     private final DcMotor shoulderMotor;
-    private final Servo liftServoTiltRight;
-    private final Servo liftServoTiltLeft;
+    private final CRServo liftServoTiltRight;
+    private final CRServo liftServoTiltLeft;
     private final Servo rightHangServo;
     private final Servo leftHangServo;
 
@@ -27,7 +28,7 @@ public class Lift {
      * @param liftServoTiltLeft  The left tilt lift servo.
      * @param rightHangServo     The right hang servo.
      */
-    public Lift(DcMotor liftMotorLeft, DcMotor liftMotorRight, DcMotor shoulderMotor, Servo liftServoTiltRight, Servo liftServoTiltLeft, Servo rightHangServo, Servo leftHangServo) {
+    public Lift(DcMotor liftMotorLeft, DcMotor liftMotorRight, DcMotor shoulderMotor, CRServo liftServoTiltRight, CRServo liftServoTiltLeft, Servo rightHangServo, Servo leftHangServo) {
         this.liftMotorLeft = liftMotorLeft;
         this.liftMotorRight = liftMotorRight;
         this.shoulderMotor = shoulderMotor;
@@ -62,14 +63,14 @@ public class Lift {
      * This method sets the power of the lift motor based on the provided speed.
      * It also ensures that the lift stays within its defined limits using {@link Constants#liftForwardLimit} and {@link Constants#liftBackwardLimit}.
      *
-     * @param position The desired position of the lift motor.
+     * @param power The desired power applied to the tilt servo.
      *              Positive values tilt the lift forward,
      *              negative values tilt it backward,
      *              and 0 stops the motor.
      */
-    public void liftTilt(double position) {
-        liftServoTiltLeft.setPosition(liftServoTiltLeft.getPosition() + position);
-        liftServoTiltRight.setPosition(liftServoTiltRight.getPosition() + position);
+    public void liftTilt(double power) {
+        liftServoTiltLeft.setPower(power);
+        liftServoTiltRight.setPower(power);
     }
 
     /**
@@ -111,8 +112,6 @@ public class Lift {
         return String.format(Locale.getDefault(), """
                 Lift Motor Left: %d
                 Lift Motor Right: %d
-                Lift Motor Tilt: %f
-                Lift Motor Tilt: %f
-                Shoulder Motor: %d""", liftMotorLeft.getCurrentPosition(), liftMotorRight.getCurrentPosition(), liftServoTiltLeft.getPosition(), liftServoTiltLeft.getPosition(), shoulderMotor.getCurrentPosition());
+                Shoulder Motor: %d""", liftMotorLeft.getCurrentPosition(), liftMotorRight.getCurrentPosition(), shoulderMotor.getCurrentPosition());
     }
 }
