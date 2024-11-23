@@ -9,6 +9,7 @@ import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Roadrunner.Actions.CloseClaw;
 import org.firstinspires.ftc.teamcode.Roadrunner.Actions.ElbowIn;
 import org.firstinspires.ftc.teamcode.Roadrunner.Actions.ElbowOut;
@@ -27,8 +28,8 @@ import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.Utilities;
 
 
-@Autonomous //(name = "BlueAuto", group = Constants.GroupNames.Autonomous, preselectTeleOp = "FieldCentricTeleOp")
-public class Coyotederfe extends LinearOpMode {
+@Autonomous (name = "BlueAuto", group = Constants.GroupNames.Autonomous, preselectTeleOp = "FieldCentricTeleOp")
+public class CoyoteMove extends LinearOpMode {
 
     private Robot robot;
 
@@ -84,7 +85,8 @@ public class Coyotederfe extends LinearOpMode {
         int visionOutputPosition = 1;
 
         TrajectoryActionBuilder tab1 = drive.actionBuilder(initialPose)
-                        .splineTo(new Vector2d(10, 0), Utilities.degreesToRadians(0));
+//                        .splineTo(new Vector2d(5, 0), Utilities.degreesToRadians(0))
+                        .splineTo(new Vector2d(5,0), Math.PI);
         TrajectoryActionBuilder tab2 = drive.actionBuilder(initialPose)
                         .splineTo(new Vector2d(22, -10), Utilities.degreesToRadians(0))
                         .splineTo(new Vector2d(48, -30), Utilities.degreesToRadians(0));

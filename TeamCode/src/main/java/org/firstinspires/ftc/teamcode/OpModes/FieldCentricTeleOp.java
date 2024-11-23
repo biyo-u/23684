@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.OpModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Robot;
@@ -34,13 +36,21 @@ public class FieldCentricTeleOp extends OpMode {
             robot.drive.setPower(0.6);
         }
 
+        CRServo intakeServo = hardwareMap.get(CRServo.class, "intakeServo");
+
         // Intake
-        if (gamepad2.dpad_left) {
-            robot.intake.intakeIn();
-        } else if (gamepad2.dpad_right) {
-            robot.intake.intakeOut();
+        if (gamepad2.left_trigger > 0) {
+            intakeServo.setPower(1);
+            telemetry.addLine(String.valueOf(intakeServo.getPower()));
+//            robot.intake.intakeIn();
+        } else if (gamepad2.right_trigger > 0) {
+            intakeServo.setPower(-1);
+            telemetry.addLine(String.valueOf(intakeServo.getPower()));
+//            robot.intake.intakeOut();
         } else {
-            robot.intake.intakeStop();
+            intakeServo.setPower(0);
+            telemetry.addLine(String.valueOf(intakeServo.getPower()));
+//            robot.intake.intakeStop();
         }
 
         // Wrist TODO: Add x and y key in README.md

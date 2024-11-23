@@ -112,6 +112,14 @@ public class Lift {
         shoulderMotor.setPower(speed);
     }
 
+    public DcMotor getLiftMotorLeft(){
+        return liftMotorLeft;
+    }
+
+    public DcMotor getLiftMotorRight(){
+        return liftMotorLeft;
+    }
+
     // TODO: Document
     public void hang(double rightHang, double leftHang) {
         rightHangServo.setPosition(rightHang);
