@@ -9,6 +9,7 @@ public class Lines {
  public static Robot robot;
 
 
+
     public static void MoveX(double power){
         robot.drive.setFrontLeftSpeed(power);
         robot.drive.setRearRightSpeed(power);
@@ -30,10 +31,11 @@ public class Lines {
     }
 
     public static void Movement(double x ,double y , double turning, double power){
-        robot.drive.setFrontLeftSpeed(((y - x - turning) / 1 ) / power);
-        robot.drive.setRearRightSpeed();
-        robot.drive.setFrontRightSpeed();
-        robot.drive.setRearLeftSpeed(((y + x - turning) / 1) / power;);
+        double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(turning), 1);
+        robot.drive.setFrontLeftSpeed(((y - x - turning) / denominator ) / power);
+        robot.drive.setRearRightSpeed(((y + x - turning) / denominator) / power);
+        robot.drive.setFrontRightSpeed(((y + x + turning) / denominator) / power);
+        robot.drive.setRearLeftSpeed(((y + x - turning) / denominator) / power);
 
     }
 }
