@@ -303,7 +303,7 @@ public class PinpointDrive {
 
         // path controller gains
         public double axialGain = 9.0;
-        public double lateralGain = 0.0;
+        public double lateralGain = -0.75;
         public double headingGain = 1.2; // shared with turn
 
         public double axialVelGain = 0.0;
