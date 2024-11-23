@@ -57,20 +57,28 @@ public class Lift {
         liftMotorRight.setPower(speed);
     }
 
-    /**
-     * Controls the tilting motion of the lift mechanism.
-     * <p>
-     * This method sets the power of the lift motor based on the provided speed.
-     * It also ensures that the lift stays within its defined limits using {@link Constants#liftForwardLimit} and {@link Constants#liftBackwardLimit}.
-     *
-     * @param power The desired power applied to the tilt servo.
-     *              Positive values tilt the lift forward,
-     *              negative values tilt it backward,
-     *              and 0 stops the motor.
-     */
-    public void liftTilt(double power) {
-        liftServoTiltLeft.setPower(power);
-        liftServoTiltRight.setPower(power);
+//    /**
+//     * Controls the tilting motion of the lift mechanism.
+//     * <p>
+//     * This method sets the power of the lift motor based on the provided speed.
+//     * It also ensures that the lift stays within its defined limits using {@link Constants#liftForwardLimit} and {@link Constants#liftBackwardLimit}.
+//     *
+//     * @param power The desired power applied to the tilt servo.
+//     *              Positive values tilt the lift forward,
+//     *              negative values tilt it backward,
+//     *              and 0 stops the motor.
+//     */
+//    public void liftTilt(double power) {
+//        liftServoTiltLeft.setPower(power);
+//        liftServoTiltRight.setPower(power);
+//    }
+
+    public void liftLeft(){
+        liftServoTiltLeft.setPower(0);
+    }
+
+    public void liftRight(){
+        liftServoTiltLeft.setPower(1);
     }
 
     /**
