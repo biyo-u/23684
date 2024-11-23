@@ -124,4 +124,8 @@ public class Lift {
                 Lift Motor Right: %d
                 Shoulder Motor: %d""", liftMotorLeft.getCurrentPosition(), liftMotorRight.getCurrentPosition(), shoulderMotor.getCurrentPosition());
     }
+
+    public double getLiftPosition() {
+        return (double) (liftMotorLeft.getCurrentPosition() + liftMotorRight.getCurrentPosition()) / 2;
+    }
 }
