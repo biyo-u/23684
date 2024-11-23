@@ -20,7 +20,6 @@ public class BlueAuto {
         sleep(20);
       Lines.Movement(-1,0,0,1);
         sleep(20);
-
     }
 
 }
