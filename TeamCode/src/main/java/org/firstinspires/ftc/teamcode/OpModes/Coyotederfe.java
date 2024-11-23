@@ -8,6 +8,7 @@ import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
 import org.firstinspires.ftc.teamcode.Roadrunner.Actions.CloseClaw;
 import org.firstinspires.ftc.teamcode.Roadrunner.Actions.ElbowIn;
 import org.firstinspires.ftc.teamcode.Roadrunner.Actions.ElbowOut;
@@ -21,13 +22,13 @@ import org.firstinspires.ftc.teamcode.Roadrunner.Actions.OpenClaw;
 import org.firstinspires.ftc.teamcode.Roadrunner.Actions.RaiseWrist;
 import org.firstinspires.ftc.teamcode.Roadrunner.Actions.ShoulderDown;
 import org.firstinspires.ftc.teamcode.Roadrunner.Actions.ShoulderUp;
-import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.Roadrunner.PinpointDrive;
+import org.firstinspires.ftc.teamcode.Robot;
 import org.firstinspires.ftc.teamcode.Utilities;
 
 
 @Autonomous //(name = "BlueAuto", group = Constants.GroupNames.Autonomous, preselectTeleOp = "FieldCentricTeleOp")
-public class Coyote extends LinearOpMode {
+public class Coyotederfe extends LinearOpMode {
 
     private Robot robot;
 
@@ -116,7 +117,7 @@ public class Coyote extends LinearOpMode {
 
         Actions.runBlocking(
                 new SequentialAction(
-                        LiftUp()
+                        tab1.build()
                 )
         );
     }
