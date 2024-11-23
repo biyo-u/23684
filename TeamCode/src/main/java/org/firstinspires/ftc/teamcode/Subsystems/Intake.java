@@ -36,7 +36,7 @@ public class Intake {
      * the sample into the robot.
      */
     public void intakeIn() {
-        intakeServo.setPower(-Constants.intakeSpeed);
+        intakeServo.setPower(-1);
     }
 
     /**
@@ -46,7 +46,7 @@ public class Intake {
      * the sample out of the robot.
      */
     public void intakeOut() {
-        intakeServo.setPower(Constants.intakeSpeed);
+        intakeServo.setPower(1);
     }
 
     /**
