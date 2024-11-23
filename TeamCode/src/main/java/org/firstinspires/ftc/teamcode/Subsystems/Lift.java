@@ -128,4 +128,8 @@ public class Lift {
     public double getLiftPosition() {
         return (double) (liftMotorLeft.getCurrentPosition() + liftMotorRight.getCurrentPosition()) / 2;
     }
+
+    public double getShoulderPosition() {
+        return (double) (shoulderMotor.getCurrentPosition());
+    }
 }

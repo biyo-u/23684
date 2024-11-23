@@ -103,4 +103,8 @@ public class Intake {
                 Intake Servo: %f
                 Wrist Servo: %f""", elbowMotor.getCurrentPosition(), clawServo.getPosition(), intakeServo.getPower(), wristServo.getPosition());
     }
+
+    public double getElbowPosition() {
+        return (double) (elbowMotor.getCurrentPosition());
+    }
 }
