@@ -352,12 +352,12 @@ public class PinpointDrive {
             PositionVelocityPair rightBackPosVel = rightBack.getPositionAndVelocity();
             PositionVelocityPair rightFrontPosVel = rightFront.getPositionAndVelocity();
 
-            YawPitchRollAngles angles = imu.getRobotYawPitchRollAngles();
+//            Rotation2d angles = pinpoint.getPositionRR().heading;
+            Rotation2d heading = new Rotation2d(Math.cos(pinpoint.getHeading()), Math.sin(pinpoint.getHeading()));
 
             FlightRecorder.write("MECANUM_LOCALIZER_INPUTS", new MecanumLocalizerInputsMessage(
-                    leftFrontPosVel, leftBackPosVel, rightBackPosVel, rightFrontPosVel, angles));
+                    leftFrontPosVel, leftBackPosVel, rightBackPosVel, rightFrontPosVel, pinpoint));
 
-            Rotation2d heading = Rotation2d.exp(angles.getYaw(AngleUnit.RADIANS));
 
             if (!initialized) {
                 initialized = true;

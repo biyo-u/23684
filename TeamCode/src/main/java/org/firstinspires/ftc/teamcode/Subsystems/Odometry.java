@@ -78,7 +78,7 @@ public class Odometry {
     public void updateWithWeight(double x, double y) {
         double currentX = odometry.getPosX();
         double currentY = odometry.getPosY();
-        double currentHeading = compass.getHeading(AngleUnit.DEGREES);
+        double currentHeading = compass.getHeading();
 
         odometry.setPosition(new Pose2D(DistanceUnit.INCH, (currentX * (1 - Constants.odometryWeight)) + (x * Constants.odometryWeight), (currentY * (1 - Constants.odometryWeight)) + (y * Constants.odometryWeight), AngleUnit.DEGREES, currentHeading));
     }

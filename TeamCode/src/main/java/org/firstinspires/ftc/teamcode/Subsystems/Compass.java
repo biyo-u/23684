@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
+import com.acmerobotics.roadrunner.ftc.GoBildaPinpointDriverRR;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.IMU;
 
@@ -7,6 +8,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 public class Compass {
     private final IMU imu;
+    private final GoBildaPinpointDriverRR odocomp;
 
     public Compass(IMU imu) {
         this.imu = imu;
@@ -14,17 +16,27 @@ public class Compass {
                 RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,
                 RevHubOrientationOnRobot.UsbFacingDirection.UP));
         imu.initialize(parameters);
+        odocomp = null;
     }
 
     public double getHeading() {
-        return imu.getRobotYawPitchRollAngles().getYaw();
+        if (odocomp != null) {
+            return odocomp.getHeading();
+        } else {
+            return imu.getRobotYawPitchRollAngles().getYaw();
+        }
     }
-
-    public double getHeading(AngleUnit angleUnit) {
-        return imu.getRobotYawPitchRollAngles().getYaw(angleUnit);
-    }
-
     public void resetYaw() {
-        imu.resetYaw();
+
+       if (imu != null) {
+           imu.resetYaw();
+       } else {
+           odocomp.resetPosAndIMU();
+       }
+    }
+
+    public Compass(GoBildaPinpointDriverRR goBildaPinpointDriverRR) {
+        this.odocomp = goBildaPinpointDriverRR;
+        imu = null;
     }
 }

@@ -41,7 +41,7 @@ public class Drive {
         double y = -left_stick_y; // Remember, Y stick value is reversed
 
         // Gets robot heading (direction it's pointing)
-        double botHeading = imu.getHeading(AngleUnit.RADIANS);
+        double botHeading = imu.getHeading();
 
         // Rotate the movement direction counter to the bot's rotation
         double rotX = left_stick_x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
