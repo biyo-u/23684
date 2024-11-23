@@ -262,6 +262,8 @@ public class Coyote extends LinearOpMode {
                         .lineToY(-10)
                         .splineTo(new Vector2d(0, -30), Math.PI/2)
                         .lineToY(31);
+        TrajectoryActionBuilder tab3 = drive.actionBuilder(initialPose)
+                        .splineToLinearHeading(new Pose2d(54, 56, 45), Math.PI / 2);
 
         Actions.runBlocking(
                 new SequentialAction(
@@ -273,10 +275,11 @@ public class Coyote extends LinearOpMode {
                         shoulderUp(),
                         elbowOut(),
                         LiftUp(), // raise to high basket
-                        intakeOut() // put in red high basket
-                        // lower lift
-                        // return to second y sample
-                        // collect 2nd y sample
+                        intakeOut(),// put in red high basket
+                        LiftDown(),// lower lift
+                        tab3.build(),// return to second y sample
+                        elbowOut(),// collect 2nd y sample
+                        intakeIn()
                         // raise to high basket
                         // put in red high basket
                         // lower lift
