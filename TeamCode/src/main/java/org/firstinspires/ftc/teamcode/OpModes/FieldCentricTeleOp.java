@@ -35,9 +35,9 @@ public class FieldCentricTeleOp extends OpMode {
         }
 
         // Intake
-        if (gamepad2.left_trigger > 0.2) {
+        if (gamepad2.dpad_left) {
             robot.intake.intakeIn();
-        } else if (gamepad2.right_trigger > 0.2) {
+        } else if (gamepad2.dpad_right) {
             robot.intake.intakeOut();
         } else {
             robot.intake.intakeStop();

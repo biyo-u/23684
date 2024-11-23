@@ -11,18 +11,14 @@ import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Robot;
-import org.firstinspires.ftc.teamcode.Subsystems.Lift;
 import org.firstinspires.ftc.teamcode.Roadrunner.PinpointDrive;
 
 
 @Autonomous //(name = "BlueAuto", group = Constants.GroupNames.Autonomous, preselectTeleOp = "FieldCentricTeleOp")
-public class coyoteone extends LinearOpMode {
+public class Coyote extends LinearOpMode {
 
     private Robot robot;
 
