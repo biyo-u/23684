@@ -35,7 +35,7 @@ TODO: Label controller
 - Left Joystick: Lift (Up, Down, Tilt Left, and Tilt Right)
 - Right Joystick: Shoulder (Left and Right) and Elbow (Up and Down)
 - DPad: Nothing
-- X: Nothing
-- Y: Nothing
+- X: Wrist Down
+- Y: Wrist Up
 - A: Nothing
 - B: Nothing`
