@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.roadrunner.ftc.GoBildaPinpointDriverRR;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
@@ -23,14 +22,12 @@ public class Robot {
 
     public Robot(HardwareMap hardwareMap) {
         // Private Devices
-        CRServo intakeServo = hardwareMap.get(CRServo.class, "intakeServo");
         Servo clawServo = hardwareMap.get(Servo.class, "clawServo");
         Servo wristServo = hardwareMap.get(Servo.class, "wristServo");
         Servo liftServoTiltRight = hardwareMap.get(Servo.class, "liftServoTiltRight");
         Servo liftServoTiltLeft = hardwareMap.get(Servo.class, "liftServoTiltLeft");
         Servo rightHangServo = hardwareMap.get(Servo.class, "rightHangServo");
         Servo leftHangServo = hardwareMap.get(Servo.class, "leftHangServo");
-        DcMotor elbowMotor = hardwareMap.get(DcMotor.class, "elbowMotor");
         DcMotor liftMotorLeft = hardwareMap.get(DcMotor.class, "liftMotorLeft");
         DcMotor liftMotorRight = hardwareMap.get(DcMotor.class, "liftMotorRight");
         DcMotor shoulderMotor = hardwareMap.get(DcMotor.class, "shoulderMotor");
@@ -45,7 +42,7 @@ public class Robot {
         // Initialize Public Subsystems
         compass = new Compass(imu);
 //        compass = new Compass(odometryComputer);
-        intake = new Intake(intakeServo, clawServo, elbowMotor, wristServo);
+        intake = new Intake(clawServo, wristServo);
         lift = new Lift(liftMotorLeft, liftMotorRight, shoulderMotor, liftServoTiltRight, liftServoTiltLeft, rightHangServo, leftHangServo);
         drive = new Drive(frontLeft, frontRight, rearLeft, rearRight, this);
         odometry = new Odometry(odometryComputer, compass);
