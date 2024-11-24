@@ -14,8 +14,9 @@ import org.firstinspires.ftc.teamcode.Subsystems.Odometry;
 
 /*
 THIS OPMODE IS FOR DIAGNOSTIC TESTING OF ALL HARDWARE INDEPENDENT OF SUBSYSTEMS. DO NOT DELETE THIS.
- */
+*/
 
+// TODO: Disable before competitions
 @TeleOp(name = "Zeta Prime Diagnostics", group = Constants.GroupNames.Testing)
 public class Diagnostics extends OpMode {
     private CRServo intakeServo;
