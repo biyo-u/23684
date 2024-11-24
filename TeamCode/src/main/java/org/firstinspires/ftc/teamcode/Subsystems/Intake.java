@@ -74,25 +74,27 @@ public class Intake {
         clawServo.setPosition(1);
     }
 
-    // TODO: Document
+    /**
+     * Moves the wrist servo to the "up" position.
+     * <p>
+     * This method sets the position of the wrist servo to 1.
+     */
     public void wristUp() {
         wristServo.setPosition(1);
     }
 
-    // TODO: Document
+    /**
+     * Moves the wrist servo to the "down" position.
+     * <p>
+     * This method sets the position of the wrist servo to 0.
+     */
     public void wristDown() {
         wristServo.setPosition(0);
     }
 
+    // TODO: IMPORTANT Add Thresholds for Elbow
     // TODO: Document with Gemini Code Assist
     public void elbowMove(double speed) {
-//        if (speed > 0 && elbowMotor.getCurrentPosition() > Constants.elbowForwardLimit) {
-//            elbowMotor.setPower(-speed * Constants.elbowSpeedMultiplier);
-//        } else if (speed < 0 && elbowMotor.getCurrentPosition() < Constants.elbowBackwardLimit) {
-//            elbowMotor.setPower(speed * Constants.elbowSpeedMultiplier);
-//        } else {
-//            elbowMotor.setPower(-speed * Constants.elbowSpeedMultiplier);
-//        }
         elbowMotor.setPower(-speed * Constants.elbowSpeedMultiplier);
     }
 

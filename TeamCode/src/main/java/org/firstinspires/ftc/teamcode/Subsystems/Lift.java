@@ -52,11 +52,13 @@ public class Lift {
      * @param speed The speed at which to run the lift motors.
      *              Positive values move the lift up, negative values move it down.
      */
+    // TODO: IMPORTANT Add threshold for lift
     public void liftMove(double speed) {
         liftMotorLeft.setPower(speed);
         liftMotorRight.setPower(speed);
     }
 
+    // FIXME: LIFT SERVO!!!
 //    /**
 //     * Controls the tilting motion of the lift mechanism.
 //     * <p>
@@ -97,18 +99,8 @@ public class Lift {
      *              negative values move it backward,
      *              and zero stops the motor.
      */
+    // TODO: IMPORTANT Add Thresholds
     public void shoulderMove(double speed) {
-//        if (speed > 0) {
-//            if (shoulderMotor.getCurrentPosition() < Constants.shoulderForwardLimit) {
-//                shoulderMotor.setPower(speed);
-//            }
-//        } else if (speed < 0) {
-//            if (shoulderMotor.getCurrentPosition() > Constants.shoulderBackwardLimit) {
-//                shoulderMotor.setPower(speed);
-//            }
-//        } else {
-//            shoulderMotor.setPower(0);
-//        }
         shoulderMotor.setPower(speed);
     }
 
@@ -120,7 +112,7 @@ public class Lift {
         return liftMotorLeft;
     }
 
-    // TODO: Document
+    // FIXME: They don't work that well
     public void hang(double rightHang, double leftHang) {
         rightHangServo.setPosition(rightHang);
         leftHangServo.setPosition(leftHang);

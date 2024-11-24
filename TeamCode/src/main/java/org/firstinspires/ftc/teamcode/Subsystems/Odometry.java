@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
+import com.acmerobotics.roadrunner.ftc.GoBildaPinpointDriver;
 import com.acmerobotics.roadrunner.ftc.GoBildaPinpointDriverRR;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -15,6 +16,8 @@ public class Odometry {
     // isInitialized starts out false and turns true after the first `update()` or `updateWithWeight()`
     private boolean isInitialized = false;
 
+
+
     public Odometry(GoBildaPinpointDriverRR odometry, Compass compass) {
         this.odometry = odometry;
         this.compass = compass;
@@ -24,7 +27,7 @@ public class Odometry {
         // TODO: Confirm setEncoderDirections by running EncoderDirectionTest
         this.odometry.setOffsets(-173.0, -156); //measured in mm
         this.odometry.setEncoderResolution(GoBildaPinpointDriverRR.GoBildaOdometryPods.goBILDA_SWINGARM_POD);
-        this.odometry.setEncoderDirections(GoBildaPinpointDriverRR.EncoderDirection.FORWARD, GoBildaPinpointDriverRR.EncoderDirection.FORWARD);
+        this.odometry.setEncoderDirections(GoBildaPinpointDriverRR.EncoderDirection.REVERSED, GoBildaPinpointDriverRR.EncoderDirection.FORWARD);
         this.compass.resetYaw();
         this.odometry.resetPosAndIMU();
     }

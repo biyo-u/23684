@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.OpModes;
+package org.firstinspires.ftc.teamcode.OpModes.Auto.Old;
 
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.Roadrunner.Actions.IntakeIn;
 import org.firstinspires.ftc.teamcode.Roadrunner.Actions.IntakeOut;
 import org.firstinspires.ftc.teamcode.Roadrunner.Actions.IntakeStop;
 import org.firstinspires.ftc.teamcode.Roadrunner.Actions.LiftDown;
-import org.firstinspires.ftc.teamcode.Roadrunner.Actions.LiftUp;
+import org.firstinspires.ftc.teamcode.Roadrunner.Actions.backupLiftUp;
 import org.firstinspires.ftc.teamcode.Roadrunner.Actions.LowerWrist;
 import org.firstinspires.ftc.teamcode.Roadrunner.Actions.OpenClaw;
 import org.firstinspires.ftc.teamcode.Roadrunner.Actions.RaiseWrist;
@@ -26,13 +26,13 @@ import org.firstinspires.ftc.teamcode.Roadrunner.PinpointDrive;
 import org.firstinspires.ftc.teamcode.Utilities;
 
 
-@Autonomous //(name = "BlueAuto", group = Constants.GroupNames.Autonomous, preselectTeleOp = "FieldCentricTeleOp")
+@Autonomous //(name = "BlueAuto", group = Constants.GroupNames.Autonomous, preselectTeleOp = "TeleOp")
 public class Coyote extends LinearOpMode {
 
     private Robot robot;
 
     public Action LiftUp() {
-        return new LiftUp(robot);
+        return new backupLiftUp(robot);
     }
     public Action LiftDown() {
         return new LiftDown(robot);
