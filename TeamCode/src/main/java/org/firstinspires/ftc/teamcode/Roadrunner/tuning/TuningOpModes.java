@@ -32,7 +32,7 @@ import java.util.List;
 
 public final class TuningOpModes {
     public static final String GROUP = Constants.GroupNames.RoadrunnerTuning;
-    public static final boolean DISABLED = false;
+    public static final boolean DISABLED = Constants.developerMode;
 
     private TuningOpModes() {
     }

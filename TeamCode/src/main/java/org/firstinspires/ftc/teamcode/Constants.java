@@ -1,6 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.roadrunner.Pose2d;
+
 public class Constants {
+    public static final boolean developerMode = true;
+
     // TODO: Find these values
     public static final int liftLeftForwardLimit = 8333;
     public static final int liftRightForwardLimit = 8013;
@@ -19,6 +23,7 @@ public class Constants {
     public static final double liftThreshold = 0.2;
     public static final double shoulderThreshold = 0.2;
     public static final double elbowThreshold = 0.2;
+    public static final Pose2d RedObservationZone = new Pose2d(16, 60, Math.toRadians(90));
 
     public static class GroupNames {
         public static final String TeleOp = "1.TeleOp";

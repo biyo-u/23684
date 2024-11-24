@@ -15,7 +15,8 @@ public class Auto extends LinearOpMode {
         // TODO: IMPORTANT Add April Tags
         // TODO: Clean up actions by grouping them in classes
         // TODO: Add robot location
-        Pose2d overridePose = new Pose2d(0, 0, 0);
+        // Pose2d overridePose = new Pose2d(0, 0, 0);
+        Pose2d overridePose = Constants.RedObservationZone;
 
         // Initialize April Tag Processor
 

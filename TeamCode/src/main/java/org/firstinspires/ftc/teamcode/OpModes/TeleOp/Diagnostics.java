@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.OpModes.TeleOp;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -15,6 +16,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Odometry;
 THIS OPMODE IS FOR DIAGNOSTIC TESTING OF ALL HARDWARE INDEPENDENT OF SUBSYSTEMS. DO NOT DELETE THIS.
  */
 
+@Disabled
 @TeleOp(name = "Zeta Prime Diagnostics", group = Constants.GroupNames.Testing)
 public class Diagnostics extends OpMode {
     private CRServo intakeServo;
@@ -32,11 +34,14 @@ public class Diagnostics extends OpMode {
     private DcMotor frontRight;
     private DcMotor rearLeft;
     private DcMotor rearRight;
-    private Odometry odometry;
     private Robot robot;
 
     @Override
     public void init() {
+        if (Constants.developerMode) {
+            requestOpModeStop();
+        }
+
         robot = new Robot(hardwareMap);
 
         // Private Devices
