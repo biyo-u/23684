@@ -16,7 +16,6 @@ import org.firstinspires.ftc.teamcode.Subsystems.Odometry;
 THIS OPMODE IS FOR DIAGNOSTIC TESTING OF ALL HARDWARE INDEPENDENT OF SUBSYSTEMS. DO NOT DELETE THIS.
  */
 
-@Disabled
 @TeleOp(name = "Zeta Prime Diagnostics", group = Constants.GroupNames.Testing)
 public class Diagnostics extends OpMode {
     private CRServo intakeServo;
@@ -38,10 +37,6 @@ public class Diagnostics extends OpMode {
 
     @Override
     public void init() {
-        if (Constants.developerMode) {
-            requestOpModeStop();
-        }
-
         robot = new Robot(hardwareMap);
 
         // Private Devices
