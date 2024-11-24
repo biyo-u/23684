@@ -11,18 +11,12 @@ public class Constants {
     public static final int liftForwardLimit = 8013;
     public static final int liftBackwardLimit = -999999;
     // TODO: Test elbow with DcMotor to see if encoder works, otherwise remove these variables
-    public static final int elbowForwardLimit = -999999;
-    public static final int elbowBackwardLimit = 9999999;
     public static final int shoulderForwardLimit = -999999;
     public static final int shoulderBackwardLimit = 9999999;
-    public static final double intakeSpeed = 1;
-    public static final double elbowSpeedMultiplier = 0.3;
     public static final double odometryWeight = 0.2;
     // TODO: Map values from threshold to 1/-1 for precise movement even with a dead zone
-    public static final double intakeThreshold = 0.2;
     public static final double liftThreshold = 0.2;
     public static final double shoulderThreshold = 0.2;
-    public static final double elbowThreshold = 0.2;
     public static final Pose2d RedObservationZone = new Pose2d(16, 60, Math.toRadians(90));
 
     public static class GroupNames {

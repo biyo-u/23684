@@ -1,8 +1,6 @@
 package org.firstinspires.ftc.teamcode.OpModes.TeleOp;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.CRServo;
-
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Robot;
 
@@ -32,23 +30,6 @@ public class TeleOp extends OpMode {
             robot.drive.setPower(0.6);
         }
 
-        CRServo intakeServo = hardwareMap.get(CRServo.class, "intakeServo");
-
-        // Intake FIXME: INTAKE SERVO!!!
-        if (gamepad2.left_trigger > 0) {
-            intakeServo.setPower(1);
-            telemetry.addLine(String.valueOf(intakeServo.getPower()));
-//            robot.intake.intakeIn();
-        } else if (gamepad2.right_trigger > 0) {
-            intakeServo.setPower(-1);
-            telemetry.addLine(String.valueOf(intakeServo.getPower()));
-//            robot.intake.intakeOut();
-        } else {
-            intakeServo.setPower(0);
-            telemetry.addLine(String.valueOf(intakeServo.getPower()));
-//            robot.intake.intakeStop();
-        }
-
         // Wrist TODO: Add x and y key in README.md
         if (gamepad2.y){
             robot.intake.wristUp();
@@ -68,10 +49,6 @@ public class TeleOp extends OpMode {
 
         // Shoulder
         robot.lift.shoulderMove(gamepad2.right_stick_x);
-
-        // Elbow
-        telemetry.addLine("Gamepad 2 Right Stick Y: " + gamepad2.right_stick_y);
-        robot.intake.elbowMove(gamepad2.right_stick_y);
 
         // Hang Hooks
         if (gamepad2.dpad_up) {
