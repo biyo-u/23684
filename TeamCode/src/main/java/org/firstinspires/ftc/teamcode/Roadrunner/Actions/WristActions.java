@@ -8,14 +8,6 @@ import com.acmerobotics.roadrunner.Action;
 import org.firstinspires.ftc.teamcode.Robot;
 
 public class WristActions {
-    public LowerWrist LowerWrist(Robot robot){
-        return new LowerWrist(robot);
-    }
-
-    public RaiseWrist RaiseWrist(Robot robot){
-        return new RaiseWrist(robot);
-    }
-
     public static class LowerWrist implements Action {
         private final Robot robot;
 

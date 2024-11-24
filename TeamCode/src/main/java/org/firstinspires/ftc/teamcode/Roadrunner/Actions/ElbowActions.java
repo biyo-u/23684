@@ -8,14 +8,6 @@ import com.acmerobotics.roadrunner.Action;
 import org.firstinspires.ftc.teamcode.Robot;
 
 public class ElbowActions {
-    public ElbowIn ElbowIn(Robot robot){
-        return new ElbowIn(robot);
-    }
-
-    public ElbowOut ElbowOut(Robot robot){
-        return new ElbowOut(robot);
-    }
-
     public static class ElbowIn implements Action {
         private boolean initialised = false;
         private final Robot robot;

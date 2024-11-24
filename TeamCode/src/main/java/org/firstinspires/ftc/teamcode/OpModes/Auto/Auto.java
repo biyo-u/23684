@@ -6,7 +6,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.Roadrunner.Actions.LiftActions;
 import org.firstinspires.ftc.teamcode.Roadrunner.PinpointDrive;
+import org.firstinspires.ftc.teamcode.Robot;
 
 @Autonomous(name = "Auto", group = Constants.GroupNames.Autonomous, preselectTeleOp = "TeleOp")
 public class Auto extends LinearOpMode {
@@ -29,9 +31,9 @@ public class Auto extends LinearOpMode {
         PinpointDrive drive = new PinpointDrive(hardwareMap, overridePose);
 
         Actions.runBlocking(
-                drive.actionBuilder(overridePose)
-                        .lineToX(44)
-                        .build()
+            drive.actionBuilder(overridePose)
+                    .lineToX(44)
+                    .build()
         );
     }
 }

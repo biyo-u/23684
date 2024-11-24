@@ -8,14 +8,6 @@ import com.acmerobotics.roadrunner.Action;
 import org.firstinspires.ftc.teamcode.Robot;
 
 public class ClawActions {
-    public OpenClaw OpenClaw(Robot robot){
-        return new OpenClaw(robot);
-    }
-
-    public CloseClaw CloseClaw(Robot robot){
-        return new CloseClaw(robot);
-    }
-
     public static class OpenClaw implements Action {
         private final Robot robot;
 

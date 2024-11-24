@@ -8,14 +8,6 @@ import com.acmerobotics.roadrunner.Action;
 import org.firstinspires.ftc.teamcode.Robot;
 
 public class LiftActions {
-    public LiftUp LiftUp(Robot robot, double tillPos){
-        return new LiftUp(robot, tillPos);
-    }
-
-    public LiftDown LiftDown(Robot robot, double tillPos){
-        return new LiftDown(robot, tillPos);
-    }
-
     public static class LiftUp implements Action {
 
         private boolean initialised = false;

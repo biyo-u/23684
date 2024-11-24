@@ -8,14 +8,6 @@ import com.acmerobotics.roadrunner.Action;
 import org.firstinspires.ftc.teamcode.Robot;
 
 public class ShoulderActions {
-    public ShoulderUp ShoulderUp(Robot robot){
-        return new ShoulderUp(robot);
-    }
-
-    public ShoulderDown ShoulderDown(Robot robot){
-        return new ShoulderDown(robot);
-    }
-
     public static class ShoulderUp implements Action {
         private boolean initialised = false;
         private final Robot robot;
