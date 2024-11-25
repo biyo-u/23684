@@ -59,7 +59,7 @@ public class TeleOp extends OpMode {
             robot.intake.clawClose();
         }
 
-        // Telemetry TODO: Add telemetry for Lift, Intake, Odometry (Compass was completed)
+        // Telemetry TODO: if anything else needs telemtry, add it
         if (Constants.developerMode) {
             telemetry.addLine(robot.lift.getTelemetry());
             telemetry.addLine(robot.lift.getJointLiftPosition());
