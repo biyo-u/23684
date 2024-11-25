@@ -1,14 +1,11 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.teamcode.Robot;
 
 
 public class Lines {
 
     public static Robot robot;
-
-
 
     public static void MoveX(double power){
         robot.drive.getFrontLeft().setPower(power);

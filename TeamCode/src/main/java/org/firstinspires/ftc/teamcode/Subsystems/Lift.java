@@ -1,10 +1,7 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
-
-import org.firstinspires.ftc.teamcode.Constants;
 
 import java.util.Locale;
 
@@ -129,7 +126,13 @@ public class Lift {
         return (double) (liftMotorLeft.getCurrentPosition() + liftMotorRight.getCurrentPosition()) / 2;
     }
 
+    public String getJointLiftPosition() {
+        return String.format(Locale.getDefault(), """
+                Joint Lift Position: %d""", (liftMotorLeft.getCurrentPosition() + liftMotorRight.getCurrentPosition()) / 2);
+    }
+
     public double getShoulderPosition() {
-        return (double) (shoulderMotor.getCurrentPosition());
+        return (shoulderMotor.getCurrentPosition());
     }
 }
+

@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.OpModes.TeleOp;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -10,7 +9,6 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Robot;
-import org.firstinspires.ftc.teamcode.Subsystems.Odometry;
 
 /*
 THIS OPMODE IS FOR DIAGNOSTIC TESTING OF ALL HARDWARE INDEPENDENT OF SUBSYSTEMS. DO NOT DELETE THIS.

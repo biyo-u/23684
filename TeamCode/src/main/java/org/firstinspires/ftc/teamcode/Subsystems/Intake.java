@@ -1,10 +1,6 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
-import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
-
-import org.firstinspires.ftc.teamcode.Constants;
 
 import java.util.Locale;
 
@@ -62,9 +58,7 @@ public class Intake {
 
     public String getTelemetry() {
         return String.format(Locale.getDefault(), """
-                Elbow Motor: %d
                 Claw Servo: %f
-                Intake Servo: %f
                 Wrist Servo: %f""", clawServo.getPosition(), wristServo.getPosition());
     }
 }

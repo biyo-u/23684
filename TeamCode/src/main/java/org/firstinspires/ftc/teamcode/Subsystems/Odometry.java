@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
-import com.acmerobotics.roadrunner.ftc.GoBildaPinpointDriver;
 import com.acmerobotics.roadrunner.ftc.GoBildaPinpointDriverRR;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -126,7 +125,7 @@ public class Odometry {
      */
     public String getTelemetry() {
         Pose2D position = odometry.getPosition();
-        return String.format(Locale.getDefault(), "X: %.2f, Y: %.2f, Heading: %.2f", position.getX(DistanceUnit.INCH), position.getY(DistanceUnit.INCH), position.getHeading(AngleUnit.DEGREES));
+        return String.format(Locale.getDefault(), "X: %f, Y: %f, Heading: %f", position.getX(DistanceUnit.INCH), position.getY(DistanceUnit.INCH), position.getHeading(AngleUnit.DEGREES));
     }
 
     /**

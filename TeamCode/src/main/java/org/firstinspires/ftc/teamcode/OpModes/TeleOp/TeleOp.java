@@ -25,7 +25,7 @@ public class TeleOp extends OpMode {
             robot.drive.setPower(0.6);
         }
 
-        // Wrist TODO: Add x and y key in README.md
+        // Wrist
         if (gamepad2.y){
             robot.intake.wristUp();
         } else if (gamepad2.x) {
@@ -59,11 +59,13 @@ public class TeleOp extends OpMode {
             robot.intake.clawClose();
         }
 
-        // Telemetry TODO: Add telemetry for EVERYTHING
+        // Telemetry TODO: Add telemetry for Lift, Intake, Odometry (Compass was completed)
         if (Constants.developerMode) {
             telemetry.addLine(robot.lift.getTelemetry());
+            telemetry.addLine(robot.lift.getJointLiftPosition());
             telemetry.addLine(robot.intake.getTelemetry());
             telemetry.addLine(robot.odometry.getTelemetry());
+            telemetry.addLine(robot.compass.getTelemetry());
         }
     }
 }
