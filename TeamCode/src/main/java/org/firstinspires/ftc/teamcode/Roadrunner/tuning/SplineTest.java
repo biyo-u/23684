@@ -4,9 +4,11 @@ import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Roadrunner.PinpointDrive;
 
+@TeleOp
 public final class SplineTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
@@ -18,7 +20,8 @@ public final class SplineTest extends LinearOpMode {
 
         Actions.runBlocking(
                 drive.actionBuilder(beginPose)
-                        .splineTo(new Vector2d(24, 24), Math.PI/2)
+                       // .splineTo(new Vector2d(24, 24), Math.PI/2)
+                        .splineToConstantHeading(new Vector2d(24,24), Math.PI)
                         .build());
     }
 }
