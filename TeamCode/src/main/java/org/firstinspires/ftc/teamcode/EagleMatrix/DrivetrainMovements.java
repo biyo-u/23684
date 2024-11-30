@@ -5,8 +5,9 @@ import org.firstinspires.ftc.teamcode.Robot;
 public class DrivetrainMovements {
     Robot robot;
 
-    double forward = 1;
-    double backward = -1;
+    double modifier = 0.6;
+    double forward = 1 * modifier;
+    double backward = -1 * modifier;
     double rest = 0;
 
     public DrivetrainMovements(Robot robot){
