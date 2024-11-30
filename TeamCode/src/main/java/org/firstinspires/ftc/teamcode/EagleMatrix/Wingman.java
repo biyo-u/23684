@@ -24,13 +24,12 @@ public class Wingman {
         Timer timerone = new Timer("Timer");
 
         //create separate timertask for each command, build commands in reverse (first one is at the bottom, last one is at the top)
-
-        //
         TimerTask waitfive = new TimerTask() {
             @Override
             public void run() {
                 liftMovements.ClawOpen();
-        }
+            }
+        };
 
         // Lift Lowers for 2 seconds
         TimerTask waitfour = new TimerTask() {
